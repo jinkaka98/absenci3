@@ -116,8 +116,8 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                     </div>
                 </div>
                     <center>
-                        <sub>Informasi Tekait Absensi dan Penggunaan hanya di : </sub>
-                        <a href="https://absen-kidora.space/" target="_blank">Klik Di Sini</a>
+                        <sub>Peraturan Dan Informasi hanya di : </sub>
+                        <a href="https://pedoman.kulinerjogjalarise.com/" target="_blank">Klik Di Sini</a>
                     </center>
                 <!-- * Wallet Footer -->
             </div>
