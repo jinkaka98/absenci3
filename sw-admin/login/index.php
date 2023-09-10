@@ -72,7 +72,7 @@ if(!empty($_SESSION['SESSION_USER']) && !empty($_SESSION['SESSION_ID'])){
 
 
 <footer class="text-muted text-center">
-    <small></span><span id="credits"><a class="credits" href="https://s-widodo.com" target="_blank">ok</a> - All Rights Reserveds</span>
+    <small></span><span id="credits"><a class="credits" href="https://s-widodo.com" target="_blank">CMS S-widodo.com</a> - All Rights Reserveds</span>
     <em>Version 3.0 Update 2021</em></small>
 </footer>
 

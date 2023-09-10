@@ -6,7 +6,6 @@ $DB_HOST 	= 'localhost';
 $DB_NAME 	= 'n1274787_ci3absen'; // Nama database
 $DB_USER 	= 'n1274787_absen123'; // User Database
 $DB_PASSWD  = '@Absen321'; // Password Database
-
 // -------------- Koneksi Database ------------
 @define("DB_HOST", $DB_HOST);
 @define("DB_USER", $DB_USER);
