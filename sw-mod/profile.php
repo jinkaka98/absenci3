@@ -50,7 +50,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="email4">Nama</label>
-                                <input type="text" class="form-control" id="name" name="employees_name" value="'.$row_user['employees_name'].'" required>
+                                <input type="text" class="form-control" id="name" name="employees_name" value="'.$row_user['employees_name'].'" readonly>
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
                                 </i>
@@ -60,7 +60,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="select4">Jabatan</label>
-                                <select class="form-control custom-select" name="position_id">';
+                                <select class="form-control custom-select" name="position_id" readonly>';
                                       $query="SELECT * from position order by position_name ASC";
                                       $result = $connection->query($query);
                                       while($rowa = $result->fetch_assoc()) { 
@@ -77,7 +77,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="select4">Jam Kerja</label>
-                                <select class="form-control custom-select" name="shift_id">';
+                                <select class="form-control custom-select" name="shift_id" readonly>';
                                      $query="SELECT shift_id,shift_name from shift order by shift_name ASC";
                                       $result = $connection->query($query);
                                       while($rowa = $result->fetch_assoc()) {
@@ -95,7 +95,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="password4">Lokasi Penempatan</label>
-                                <select class="form-control custom-select" name="building_id">';
+                                <select class="form-control custom-select" name="building_id" readonly>';
                                 $query  ="SELECT building_id,name,address from building";
                                 $result = $connection->query($query);
                                 while($row = $result->fetch_assoc()) {
