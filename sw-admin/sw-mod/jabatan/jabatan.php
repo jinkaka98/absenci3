@@ -1,4 +1,5 @@
 <?php 
+
 if(empty($connection)){
   header('location:../../');
 } else {
@@ -39,6 +40,7 @@ echo'
             <thead>
             <tr>
               <th style="width:20px" class="text-center">No</th>
+              <th class="text-center">ID</th>
               <th>Nama Jabatan</th>
               <th class="text-center">Jumlah Karyawan</th>
               <th style="width:100px">Aksi</th>
@@ -56,6 +58,7 @@ echo'
               echo'
               <tr>
                 <td class="text-center">'.$no.'</td>
+                <td class="text-center">'.$row['position_id'].'</td>
                 <td>'.$row['position_name'].'</td>
                 <td class="text-center"><span class="badge bg-yellow">'.$result_count->num_rows.'</span></td>
                 <td>

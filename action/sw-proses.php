@@ -69,6 +69,8 @@ break;
 
 /* ------------- REGISTRASI ---------------*/
 case 'registrasi':
+    echo "Mohon untuk membeli sourec code terlebih dahulu";
+    die;
 $error = array();
 
   if (empty($_POST['employees_code'])) {
@@ -254,21 +256,30 @@ $tmp_name   = imagecreatetruecolor($width_new,$height_new);
 imagecopyresampled($tmp_name,$src,0,0,0,0,$width_new,$height_new,$width,$height);
 /* ---------- Set Size Foto ----------------*/
 if (empty($_GET['latitude'])) {
-      $error[] = 'tidak boleh kosong';
+      $error[] = 'Silahkan Izinkan Lokasi Anda saat ini!';
     } else {
-      $latitude= mysqli_real_escape_string($connection, $_GET['latitude']);
+      $latitude= mysqli_real_escape_string($connection,$_GET['latitude']);
 }
+
+if (empty($_GET['radius'])) {
+      $error[] = 'Jarak Lokasi tidak ditemukan!';
+    } else {
+      $radius = mysqli_real_escape_string($connection,$_GET['radius']);
+}
+
 
 if (empty($error)){
   
   if (($extension="jpg") && ($extension="jpeg") && ($extension="gif")) { 
     if($ukuran_file <50000000) {
     // Cek User yang sudah login -----------------------------------------------
-    $query_u="SELECT employees.id,employees.employees_code,employees.employees_name,employees.shift_id,shift.shift_id,shift.time_in,shift.time_out FROM employees,shift WHERE employees.shift_id=shift.shift_id AND employees.id='$row_user[id]'";
+    $query_u="SELECT employees.id,employees.employees_code,employees.employees_name,employees.shift_id,shift.shift_id,shift.time_in,shift.time_out,building.radius FROM employees,shift,building WHERE employees.shift_id=shift.shift_id AND employees.building_id=building.building_id AND employees.id='$row_user[id]'";
     $result_u = $connection->query($query_u);
     if($result_u->num_rows > 0){
     $row_u = $result_u->fetch_assoc();
 
+      // Cek Radius Absensi ------------------------------
+      if($row_u['radius'] > $radius){
         // Cek data Absen Berdasarkan tanggal sekarang
         $query  ="SELECT employees_id,time_in,time_out FROM presence WHERE employees_id='$row_u[id]' AND presence_date='$date'";
         $result = $connection->query($query);
@@ -328,7 +339,9 @@ if (empty($error)){
                 imagejpeg($tmp_name,$directory,80);
             }
           }
-      }
+      }else{
+        echo'Posisi Anda saat ini di radius '.$radius.'M, tidak ditempat atau Jauh dari Radius..!';
+      }}
       else{
         // Jika user tidak ditemukan
         echo'User tidak ditemukan';die($connection->error.__LINE__); 
@@ -342,14 +355,16 @@ if (empty($error)){
     }
   }
     else{
-      echo 'Silahkan Izinkan Lokasi Anda saat ini!';
+      foreach ($error as $key => $values) {            
+        echo $values;
+      }
 }
- 
-
 
 // ----------- UPDATE PROFILE -------------------//
 break;
 case 'profile':
+    echo "Mohon untuk membeli source code terlebih dahulu";
+    die;
   $error = array();
 
   if (empty($_POST['employees_name'])) {
@@ -396,6 +411,8 @@ break;
 
 // ----------- UPDATE PASSWORD -------------------//
 case 'update-password':
+    echo "Mohon untuk membeli Source code terlebih dahulu";
+    die;
  $error = array();
   if (empty($_POST['employees_email'])) {
       $error[] = 'tidak boleh kosong';
@@ -437,22 +454,22 @@ break;
 
 /* -------- UPDATE PHOTO ----------------*/
 case 'update-photo':
+    echo "Mohon untuk membeli Source code terlebih dahulu";
+    die;
   $file_name   = $_FILES['file'] ['name'];
   $size        = $_FILES['file'] ['size'];
   $error       = $_FILES['file'] ['error'];
   $tmpName     = $_FILES['file']['tmp_name'];
   $filepath      = '../sw-content/karyawan/';
-  $valid       = array('jpg','png','gif','jpeg'); 
+  $valid       = array('jpg','gif','jpeg'); 
   if(strlen($file_name)){   
        // Perintah untuk mengecek format gambar
-       list($txt,$ext) = explode(".", $file_name);
-       $file_ext = substr($file_name, strripos($file_name, '.'));
-
-       if(in_array($ext,$valid)){   
-         if($size<500000){   
+        $extension = getExtension($file_name);
+        $extension = strtolower($extension);
+      if(in_array($extension,$valid)){ 
+         if($size < 500000){   
            // Perintah pengganti nama files
-           //$photo_new   = strip_tags(md5($file_name));
-           $photo_new   =''.$row_user['employees_code'].'-'.strip_tags(md5($file_name)).'-'.seo_title($time).'-'.$file_ext.'';
+           $photo_new   =''.$row_user['id'].'-'.strip_tags(md5($file_name)).'-'.seo_title($time).'.'.$extension.'';
            $pathFile    = $filepath.$photo_new;
 
             $query = "SELECT photo FROM employees WHERE id='$row_user[id]'"; 
@@ -729,9 +746,9 @@ $error = array();
 
 
 if (empty($error)) {
-  $query="SELECT cuty_id from cuty where MONTH(cuty_start) ='$month'";
+  $query="SELECT cuty_id from cuty where MONTH(cuty_start) ='$month' AND employees_id='$row_user[id]'";
   $result= $connection->query($query) or die($connection->error.__LINE__);
- // if(!$result ->num_rows >0){
+  if(!$result ->num_rows >0){
     $add ="INSERT INTO cuty (employees_id,
               cuty_start,
               cuty_end,
@@ -750,13 +767,10 @@ if (empty($error)) {
         echo'Data tidak berhasil disimpan!';
     } else{
         echo'success';
-    //}
-    }
-    //else   {
-    //  echo'Sepertinya "'.$row_user['employees_name'].'" sudah mengajukan cuti di BULAN ini!';
-    //}
-    
-}
+    }}
+    else   {
+      echo'Sepertinya "'.$row_user['employees_name'].'" sudah mengajukan cuti di BULAN ini!';
+    }}
 
     else{           
         echo'Bidang inputan masih ada yang kosong..!';
@@ -823,7 +837,261 @@ if (empty($error)) {
 
 
 
-// -------------- UPDATE CUTY ----------------------//
+
+// -------------- IZIN --------------------------//
+break;
+case 'izin':
+if(isset($_POST['from']) OR isset($_POST['to'])){
+      $from = date('Y-m-d', strtotime($_POST['from']));
+      $to   = date('Y-m-d', strtotime($_POST['to']));
+
+      $filter ="date BETWEEN '$from' AND '$to'";
+  } 
+  else{
+      $filter ="MONTH(date) ='$month'";
+}
+
+    $query_permission="SELECT * FROM permission WHERE $filter AND permission.employees_id='$row_user[id]' ORDER BY permission.permission_id DESC";
+    $result_permission = $connection->query($query_permission);
+    if($result_permission->num_rows > 0){
+      while ($row_permission = $result_permission->fetch_assoc()) {
+      echo'
+      <div class="item">
+          <div class="detail">
+              <div>
+                  <a class="image-link" href="./sw-content/izin/'.$row_permission['files'].'"><span class="badge badge-success">'.$row_permission['permission_name'].'  - '.tanggal_ind($row_permission['date']).'</span></a>
+                  <p>
+                    <ion-icon name="calendar-outline"></ion-icon> Mulai : '.tanggal_ind($row_permission['permission_date']).'<br>
+                    <ion-icon name="calendar-outline"></ion-icon> Selesai : '.tanggal_ind($row_permission['permission_date_finish']).'<br>
+                    <ion-icon name="chatbubble-outline"></ion-icon> '.strip_tags($row_permission['permission_description']).'</p>
+              </div>
+          </div>
+          <div class="right">
+             <button type="button" class="btn btn-danger btn-sm delete-izin" data-id="'.epm_encode($row_permission['permission_id']).'"><ion-icon name="trash-outline"></ion-icon></button>';
+            echo'
+          </div>
+      </div>';?>
+      <script type="text/javascript">
+        $('.image-link').magnificPopup({type:'image'});
+      </script>
+    <?PHP
+      }
+    }else{
+      echo'';
+    }
+
+
+// -------------- ADD IZIN ----------------------//
+break;
+case 'add-izin':
+    // echo "Mohon untuk membeli Source code terlebih dahulu";
+    // die;
+  $max_size = 8000000; // 8MB
+  $allowed_ext  = array('jpg', 'jpeg', 'doc', 'docx', 'docm', 'pdf');
+  $error = array();
+  if (empty($_POST['permission_name'])) {
+      $error[] = 'Nama tidak boleh kosong';
+    } else {
+      $permission_name = anti_injection($_POST['permission_name']);
+  }
+
+  if (empty($_POST['permission_date'])) {
+      $error[] = 'Tanggal Mulai Sakit tidak boleh kosong';
+    } else {
+       $permission_date = date('Y-m-d',strtotime($_POST['permission_date']));
+  }
+
+  if (empty($_POST['permission_date_finish'])) {
+      $error[] = 'Tanggal Selesai Sakit tidak boleh kosong';
+    } else {
+       $permission_date_finish = date('Y-m-d',strtotime($_POST['permission_date_finish']));
+  }
+
+
+  if (empty($_POST['permission_description'])) {
+        $error[] = 'Keterangan tidak boleh kosong';
+    } else {
+      $permission_description = anti_injection($_POST['permission_description']);
+  }
+
+  if (empty($_POST['type'])) {
+        $error[] = 'Tipe tidak boleh kosong';
+    } else {
+        $type = anti_injection($_POST['type']);
+  }
+
+if (empty($error)) {
+  $query="SELECT files from permission WHERE permission_date BETWEEN '$permission_date' AND '$permission_date_finish' OR permission_date_finish BETWEEN '$permission_date' AND '$permission_date_finish' AND employees_id='$row_user[id]'";
+  $result= $connection->query($query);
+    if(!$result->num_rows > 0){
+        
+        $file_name    = $_FILES['files']['name'];
+        $file_ext     = pathinfo($_FILES['files']['name'], PATHINFO_EXTENSION);
+        $file_size    = $_FILES['files']['size'];
+        $file_tmp     = $_FILES['files']['tmp_name'];
+        if($file_name ==''){
+          // Tidak Upload Files
+              $add ="INSERT INTO permission (employees_id,
+                    permission_name,
+                    permission_date,
+                    permission_date_finish,
+                    permission_description,
+                    files,
+                    type,
+                    date) values('$row_user[id]',
+                    '$permission_name',
+                    '$permission_date',
+                    '$permission_date_finish',
+                    '$permission_description',
+                    '',
+                    '$type',
+                    '$date')";
+
+                $start = date('Y-m-d',strtotime('-1 days',strtotime($permission_date)));
+                $finish = date('Y-m-d',strtotime('-1 days',strtotime($permission_date_finish)));
+                while ($start <= $finish) {
+                    $start = date('Y-m-d',strtotime('+1 days',strtotime($start)));
+                    $add_absent ="INSERT INTO presence (employees_id,
+                                        presence_date,
+                                        time_in,
+                                        time_out,
+                                        picture_in,
+                                        picture_out,
+                                        present_id,
+                                        latitude_longtitude_in,
+                                        latitude_longtitude_out,
+                                        information) values('$row_user[id]',
+                                        '$start',
+                                        '$time',
+                                        '00:00:00',
+                                        '', /*picture  in kosong*/
+                                        '', /*picture out kosong*/
+                                        '3', /*Izin*/
+                                        '',
+                                        '',
+                                        '')";
+                    $connection->query($add_absent);
+                }
+            if($connection->query($add) === false) { 
+                die($connection->error.__LINE__); 
+                echo'Data tidak berhasil disimpan!';
+            } else{
+                echo'success';
+          }
+        }else{
+          // Upload Files/Sakit
+          if(in_array($file_ext, $allowed_ext) === true){
+              if ($file_size <= $max_size) {
+              $files =''.$date.'-'.$row_user['id'].'-'.seo_title($file_name).'.'.$file_ext.'';
+              $lokasi = '../sw-content/izin/'.$files.'';
+                $add ="INSERT INTO permission (employees_id,
+                          permission_name,
+                          permission_date,
+                          permission_date_finish,
+                          permission_description,
+                          files,
+                          type,
+                          date) values('$row_user[id]',
+                          '$permission_name',
+                          '$permission_date',
+                          '$permission_date_finish',
+                          '$permission_description',
+                          '$files',
+                          '$type',
+                          '$date')";
+
+            $start = date('Y-m-d',strtotime('-1 days',strtotime($permission_date)));
+            $finish = date('Y-m-d',strtotime('-1 days',strtotime($permission_date_finish)));
+            while ($start <= $finish) {
+                $start = date('Y-m-d',strtotime('+1 days',strtotime($start)));
+                $add_absent ="INSERT INTO presence (employees_id,
+                                    presence_date,
+                                    time_in,
+                                    time_out,
+                                    picture_in,
+                                    picture_out,
+                                    present_id,
+                                    latitude_longtitude_in,
+                                    latitude_longtitude_out,
+                                    information) values('$row_user[id]',
+                                    '$start',
+                                    '$time',
+                                    '00:00:00',
+                                    '', /*picture  in kosong*/
+                                    '', /*picture out kosong*/
+                                    '2', /*Sakit*/
+                                    '',
+                                    '',
+                                    '')";
+                   $connection->query($add_absent);
+            }
+
+          if($connection->query($add) === false) { 
+              die($connection->error.__LINE__); 
+              echo'Data tidak berhasil disimpan!';
+          } else{
+              echo'success';
+              move_uploaded_file($file_tmp, $lokasi);
+             
+            }
+          }
+          else{
+              echo'File yang di unggah terlalu besar Maksimal Size 8MB..!';
+          }}
+          else{
+            echo'File yang di unggah tidak sesuai dengan format, Berkas harus berformat jpg, jpeg, doc, docx, docm, pdf.!';
+
+          }
+        }
+
+      }else{
+          echo'Sebelumnya data sudah ada pada tanggal '.tgl_indo($permission_date).' sampai '.tgl_indo($permission_date_finish).'';
+    }
+  }
+  else{           
+      foreach ($error as $key => $values) {            
+        echo $values;
+      }
+  }
+
+
+
+// -------------- DELETE IZIN --------------------- //
+break;
+case 'delete-izin':
+  $id       = mysqli_real_escape_string($connection,epm_decode($_POST['id']));
+  $query_delete  ="SELECT files,permission_date,permission_date_finish from permission WHERE employees_id='$row_user[id]' AND permission_id='$id'";
+  $result_delete = $connection->query($query_delete);
+  if($result_delete->num_rows > 0){
+     $row = $result_delete->fetch_assoc();
+
+    $start = date('Y-m-d',strtotime('-1 days',strtotime($row['permission_date'])));
+    $finish = date('Y-m-d',strtotime('-1 days',strtotime($row['permission_date_finish'])));
+    
+      $images_delete = strip_tags($row['files']);
+      $directory='../sw-content/izin/'.$images_delete.'';
+      if(file_exists("../sw-content/izin/$images_delete")){
+          unlink ($directory);
+      }
+
+    while ($start <= $finish) {
+          $start = date('Y-m-d',strtotime('+1 days',strtotime($start)));
+          $deleted_absent  = "DELETE FROM presence WHERE employees_id='$row_user[id]' AND presence_date='$start'";
+          $connection->query($deleted_absent);
+    }
+    $deleted  = "DELETE FROM permission WHERE employees_id='$row_user[id]' AND permission_id='$id'";
+    if($connection->query($deleted) === true) {
+      echo'success';
+    } else { 
+      //tidak berhasil
+      echo'Data tidak berhasil dihapus.!';
+      die($connection->error.__LINE__);
+    }
+
+  }
+
+
+// -------------- LOAD DATA HOME ----------------------//
 break;
 case 'load-home-counter':
   if(isset($_POST['month_filter'])){

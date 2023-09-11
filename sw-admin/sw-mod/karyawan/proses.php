@@ -1,4 +1,6 @@
 <?php
+echo "Mohon untuk beli aplikasi terlebih dahulu";
+Die;
 session_start();
 if(empty($_SESSION['SESSION_USER']) && empty($_SESSION['SESSION_ID'])){
     header('location:../../login/');
@@ -324,6 +326,84 @@ case 'delete':
         echo'Data tidak berhasil dihapus.!';
         die($connection->error.__LINE__);
   }
+
+
+/* ------------- IMPORT --------------*/
+break;
+case 'import':
+// Allowed mime types
+$csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain');
+
+if(!empty($_FILES['files']['name']) && in_array($_FILES['files']['type'], $csvMimes)){
+        // If the file is uploaded
+        if(is_uploaded_file($_FILES['files']['tmp_name'])){
+            // Open uploaded CSV file with read-only mode
+            $csvFile = fopen($_FILES['files']['tmp_name'], 'r');
+    
+            // Skip the first line
+            fgetcsv($csvFile);
+            
+            // Parse data from CSV file line by line
+            while(($line = fgetcsv($csvFile)) !== FALSE){
+                // Get row data
+                $employees_code     = $line[0];
+                $employees_email    = $line[1];
+                $employees_password = hash('sha256',$salt.$line[2]);
+                $employees_name     = $line[3];
+                $position_id        = $line[4];
+                $shift_id           = $line[5];
+                $building_id        = $line[6];
+                // Check berdasa  rkan code
+                $query  = "SELECT id FROM employees WHERE employees_code='$employees_code'";
+                $result = $connection->query($query);
+               
+                if($result->num_rows > 0){
+                // Update member data in the database
+                    $update="UPDATE employees SET employees_name='$employees_name',
+                      position_id='$position_id',
+                      shift_id='$shift_id',
+                      building_id='$building_id' WHERE employees_code='$employees_code'";
+                    $connection->query($update);
+                }else{
+                    // Insert KARYAWAN data in the database
+                    $add ="INSERT INTO employees (employees_code,
+                                      employees_email,
+                                      employees_password,
+                                      employees_name,
+                                      position_id,
+                                      shift_id,
+                                      building_id,
+                                      photo,
+                                      created_login,
+                                      created_cookies) values('$employees_code',
+                                      '$employees_email',
+                                      '$employees_password',
+                                      '$employees_name',
+                                      '$position_id',
+                                      '$shift_id',
+                                      '$building_id',
+                                      '', /*Photo kosong*/
+                                      '$date $time',
+                                      '-')";
+                        if($connection->query($add) === false) {
+                            echo'Data Pegawai Tidak dapat di Import.!';
+                        }else{
+                            //echo'success';
+                        }
+                }
+            }
+            
+            // Close opened CSV file
+            fclose($csvFile);
+            echo'success';
+        }else{
+            echo'Data Pegawai tidak berhasil di import.!';
+        }
+    }else{
+          echo'File tidak sesuai format, Upload file CSV.!';
+
+    }
+
 break;
 
 }

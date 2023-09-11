@@ -31,7 +31,7 @@ echo'
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/css/style.css">
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/css/sw-custom.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">';
-  if($mod =='history'){
+  if($mod =='history' OR $mod=='izin'){
     echo'
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/datatables/dataTables.bootstrap.css">
@@ -117,13 +117,23 @@ echo'<!-- App Sidebar -->
                             </a>
                         </li>
                         <li>
-                            <a href="./present" class="item">
+                            <a href="./absent" class="item">
                                 <div class="icon-box bg-danger">
                                     <ion-icon name="scan-outline"></ion-icon>
                                 </div>
                                     Absen
                             </a>
                         </li>
+
+                        <li>
+                            <a href="./izin" class="item">
+                                <div class="icon-box bg-danger">
+                                   <ion-icon name="documents-outline"></ion-icon>
+                                </div>
+                                  Izin
+                            </a>
+                        </li>
+
 
                         <li>
                             <a href="./cuty" class="item">

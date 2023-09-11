@@ -1,4 +1,6 @@
 <?php
+// echo "Mohon untuk beli aplikasi terlebih dahulu";
+// die;
 session_start();
 if(empty($_SESSION['SESSION_USER']) && empty($_SESSION['SESSION_ID'])){
     header('location:../../login/');

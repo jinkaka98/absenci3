@@ -60,6 +60,7 @@ if(!empty($_SESSION['SESSION_USER']) && !empty($_SESSION['SESSION_ID'])){
       <div class="col-md-12" style="min-height:40px;"><span id="stat"></span></div>
         <div class="col-xs-12">
           <button type="submit" class="btn btn-primary btn-block btn-flat" id="login">Login to Admin</button>
+           <a href="https://timkoding.com/downloads/source-code-absensi-online-absen-selfie-deteksi-lokasi-berbasis-web-bonus-source-code-e-book-v3-lock-lokasi/" class="btn btn-warning  btn-block">Beli Aplikasi</a>
         </div>
         <!-- /.col -->
       </div>
@@ -72,7 +73,8 @@ if(!empty($_SESSION['SESSION_USER']) && !empty($_SESSION['SESSION_ID'])){
 
 
 <footer class="text-muted text-center">
-    Redeveloped by <a href="https://imamdev.com" rel="dofollow" target="_blank">Imamdev</a><br/><div style="display: none;"><a class="credits" href="https://s-widodo.com" rel="nofollow" target="_blank"></a></div>
+    <small></span><span id="credits"><a class="credits" href='https://timkoding.com' target="_blank">Tim Koding Indonesia</a> - All Rights Reserveds</span>
+    <em>Version 3.0 Update 2021</em></small>
 </footer>
 
         <script src="../sw-assets/js/jquery.min.js"></script>

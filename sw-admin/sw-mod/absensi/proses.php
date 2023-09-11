@@ -52,11 +52,23 @@ echo'
             $warna      = '';
             $background = '';
             $status_hadir     = 'Tidak Hadir';
-          if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday") {
+      if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday"){
             $warna='#ffffff';
             $background ='#FF0000';
             $status_hadir ='Libur Akhir Pekan';
-        }
+            $sum++;
+      }
+      else{
+        $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
+        $query_holiday="SELECT holiday_date FROM holiday WHERE holiday_date='$date_month_year'";
+        $result_holiday = $connection->query($query_holiday);
+          if($result_holiday->num_rows > 0){
+            $warna='#ffffff';
+            $background ='#FF0000';
+            $libur++;
+          }
+
+      }
       $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
 
       if(isset($_POST['month']) OR isset($_POST['year'])){
@@ -81,13 +93,36 @@ echo'
       $newtimestamp = strtotime(''.$shift_time_in.' + 05 minute');
       $newtimestamp = date('H:i:s', $newtimestamp);
 
-      $query_absen ="SELECT presence_id,presence_date,time_in,time_out,picture_in,picture_out,present_id, latitude_longtitude_in,latitude_longtitude_out,information,TIMEDIFF(TIME(time_in),'$shift_time_in') AS selisih,if (time_in>'$shift_time_in','Telat',if(time_in='00:00:00','Tidak Masuk','Tepat Waktu')) AS status, TIMEDIFF(TIME(time_out),'$shift_time_out') AS selisih_out FROM presence WHERE $filter ORDER BY presence_id DESC";
+      $query_absen ="SELECT presence_id,presence_date,time_in,time_out,picture_in,picture_out,present_id,latitude_longtitude_in,information,TIMEDIFF(TIME(time_in),'$shift_time_in') AS selisih,if (time_in>'$shift_time_in','Telat',if(time_in='00:00:00','Tidak Masuk','')) AS status,TIMEDIFF(TIME(time_out),'$shift_time_out') AS selisih_out, if (time_out<'$shift_time_out','Pulang Cepat','') AS status_pulang FROM presence WHERE $filter ORDER BY presence_id DESC";
       $result_absen = $connection->query($query_absen);
       $row_absen = $result_absen->fetch_assoc();
       // Status Kehadiran
       $querya ="SELECT present_id,present_name FROM present_status WHERE present_id='$row_absen[present_id]'";
       $resulta= $connection->query($querya);
       $rowa =  $resulta->fetch_assoc();
+      
+      if($row_absen['status']=='Telat'){
+          $status=' <span class="badge badge-danger">'.$row_absen['status'].'</span>';
+        }
+        else{
+          $status='<span class="badge badge-danger">'.$row_absen['status'].'</span>';
+        }
+
+        if($row_absen['status_pulang']=='Pulang Cepat' ){
+            if($row_absen['selisih'] < date('00:00:00')){
+                $status_pulang = '';
+            }else {
+                $status_pulang='<span class="badge badge-danger">'.$row_absen['status_pulang'].'</span>';
+            }
+          
+        }
+        else{
+          $status_pulang='';
+        }
+      
+      
+      
+      
         // Status Kehadiran
         if($row_absen['time_in'] == NULL){
           if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday") {
@@ -133,8 +168,22 @@ echo'
             }
           echo'
           </td>
-          <td class="text-center">'.$row_absen['time_in'].' '.$status_time_in.'</td>
-          <td class="text-center">'.$row_absen['selisih'].'</td>
+          <td class="text-center">'.$row_absen['time_in'].' '.$status_time_in.'</td>';
+        //   $sls = explode('-',$row_absen['selisih']);
+        //   var_dump($sls);
+          if($row_absen['selisih'] < date('00:00:00')) {
+              $sel = " ";
+          }else{
+              $sel= $row_absen['selisih'];
+          }
+          
+          
+          if($selisih_out < date('00:00:00')) {
+              $sel_out = " ";
+          }else{
+              $sel_out= $row_absen['status'];
+          }
+         echo '<td class="text-center">'.$sel.'</td>
           <td class="text-center picture">';
               if($row_absen['picture_out'] ==NULL){
                 echo'<img src="../timthumb?src='.$site_url.'/sw-content/avatar.jpg&h=40&w=40">';}
@@ -143,7 +192,7 @@ echo'
                       <img src="../timthumb?src='.$site_url.'/sw-content/absent/'.$row_absen['picture_out'].'&h=40&w=40"></a>';}
               echo'</td>
           <td class="text-center">'.$row_absen['time_out'].'</td>
-          <td class="text-center">'.$selisih_out.'</td>
+          <td class="text-center">'.$status_pulang.'</td>
           <td>'.$status_hadir.'<br>'.$row_absen['information'].'</td>
 
           <td class="text-right">

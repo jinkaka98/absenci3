@@ -184,4 +184,35 @@ $('.update-password').submit(function (e) {
 }); 
 
 
+/* ----------- Import ------------*/
+$('.import').submit(function (e) {
+        loading();
+        e.preventDefault();
+        $.ajax({
+            url:"sw-mod/karyawan/proses.php?action=import",
+            type: "POST",
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            cache: false,
+            async: false,
+            beforeSend: function () { 
+              loading();
+            },
+            success: function (data) {
+                if (data == 'success') {
+                    swal({title: 'Berhasil!', text: 'Data Karyawan berhasil diimport.!', icon: 'success', timer: 2500,});
+                   window.setTimeout(window.location.href = "./karyawan",2500);
+                } else {
+                    swal({title: 'Oops!', text: data, icon: 'error', timer: 2500,});
+                }
+
+            },
+            complete: function () {
+                $(".loading").hide();
+            },
+        });
+  });
+
+
 });

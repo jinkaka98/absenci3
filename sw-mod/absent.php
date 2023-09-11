@@ -13,7 +13,9 @@ if(!isset($_COOKIE['COOKIES_MEMBER']) && !isset($_COOKIE['COOKIES_COOKIES'])){
         session_destroy();
         header("location:./"); 
 }else{
-
+$query_building  ="SELECT latitude_longtitude,radius FROM building WHERE building_id='$row_user[building_id]'";
+$result_building = $connection->query($query_building);
+$row_building = $result_building->fetch_assoc();
   echo'<!-- App Capsule -->
     <div id="appCapsule">
         <!-- Wallet Card -->
@@ -35,33 +37,21 @@ if(!isset($_COOKIE['COOKIES_MEMBER']) && !isset($_COOKIE['COOKIES_COOKIES'])){
                 <!--<h3>'.tgl_ind($date).' - <span class="clock"></span></h3>-->
                 <p>Lat-Long: <span class="latitude" id="latitude"></span></p></div>
                 <div class="wallet-footer text-center">
-                    <div class="webcam-capture-body text-center">';
-                    // ========== Cek untuk deteksi Device ===================//
-                    if($mobile =='true'){
-                        echo'
-                        <div class="webcam-camera">
-                             <img src="sw-content/camera.png">';
-                             if($result_absent->num_rows > 0){
-                                echo'
-                                <button class="btn btn-success btn-lg btn-block"><ion-icon name="camera-outline"></ion-icon>Absen Pulang<input type="file" name="webcam" id="webcam" accept="image/jpg, image/gif, image/jpeg" capture="environment"></button>';}
-                                else{
-                                echo'
-                                <button class="btn btn-success btn-lg btn-block"><ion-icon name="camera-outline"></ion-icon>Absen Masuk<input type="file" name="webcam" id="webcam" accept="image/jpg, image/gif, image/jpeg" capture="environment"></button>';}
-                            echo'
-                        </div>';
-                    }
-                    else{
-                        echo'<div class="webcam-capture"></div>
+                    <div class="webcam-capture-body text-center">
+                        <div class="webcam-capture"></div>
+                         <div class="btn-group" role="group" aria-label="Basic example">
+                          <a href="" id="front" class="btn btn-primary">Front</a>
+                          <a href="/absents" id="back" class="btn btn-warning">Back</a>
+                        </div>
                         <div class="form-group basic">';
                             if($result_absent->num_rows > 0){
                                 echo'
-                                <button class="btn btn-success btn-lg btn-block" onClick="captureimage(0)"><ion-icon name="camera-outline"></ion-icon>Absen Pulang</button>';}
+                                <button class="btn btn-success absent-capture btn-lg btn-block"><ion-icon name="camera-outline"></ion-icon>Absen Pulang</button>';}
                                 else{
                                 echo'
-                                <button class="btn btn-success btn-lg btn-block" onClick="captureimage(0)"><ion-icon name="camera-outline"></ion-icon>Absen Masuk</button>';}
+                                <button class="btn btn-success absent-capture btn-lg btn-block"><ion-icon name="camera-outline"></ion-icon>Absen Masuk</button>';}
                         echo'
                         </div>';
-                    }
                 echo'
                     </div>
                 </div>
@@ -70,8 +60,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER']) && !isset($_COOKIE['COOKIES_COOKIES'])){
         </div>
         <!-- Card -->
     </div>
-    <!-- * App Capsule -->
-';
+    <!-- * App Capsule -->';
 
   }
   include_once 'sw-mod/sw-footer.php';

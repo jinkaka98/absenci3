@@ -1,10 +1,10 @@
 <?php //error_reporting(0);
+echo "Waktu Demo Telah Berakhir";
+ die;
   ob_start();
   session_start();
   include_once 'sw-library/sw-config.php';
   include_once 'sw-library/sw-function.php';
-  include_once 'sw-library/mobile-detect/Mobile_Detect.php';
-  $detect = new Mobile_Detect();
   //ob_start("minify_html");
   $dbhostsql      = DB_HOST;
   $dbusersql      = DB_USER;
@@ -26,11 +26,6 @@
    // $row_absent     = $result_absent->fetch_assoc();
   }
 
-if ($detect->isMobile()){
-    $mobile ='true';
-  }else{
-    $mobile ='false';
-  }
 
   $website_url        = $row_site['site_url'];
   $website_name       = $row_site['site_name'];

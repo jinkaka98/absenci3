@@ -22,7 +22,7 @@ echo'
         <a href="./cuty" class="item">
             <div class="col">
                <ion-icon name="calendar-outline"></ion-icon>
-                <strong>Cuti</strong>
+                <strong>Cuty</strong>
             </div>
         </a>
 
@@ -45,8 +45,8 @@ echo'
 }
 ob_end_flush();
 echo'
-<footer class="text-muted text-center" style="display:none">
-   <p>© 2021 - '.$year.' '.$site_name.' - Design By: <span id="credits"><a class="credits_a" href="https://s-widodo.com" target="_blank">S-widodo.com</a></span></p>
+<footer class="text-muted text-center">
+   <p>© 2021 - '.$year.' '.$site_name.' - Design By: <span id="credits"><a class="credits_a" href="https://timkoding.com" target="_blank">timkoding.com</a></span></p>
 </footer>
 <!-- ///////////// Js Files ////////////////////  -->
 <!-- Jquery -->
@@ -61,7 +61,7 @@ echo'
 <script src="'.$base_url.'sw-mod/sw-assets/js/base.js"></script>
 <script src="'.$base_url.'sw-mod/sw-assets/js/sweetalert.min.js"></script>
 <script src="'.$base_url.'sw-mod/sw-assets/js/webcamjs/webcam.min.js"></script>';
-if($mod =='history' OR $mod=='cuty'){
+if($mod =='history' OR $mod=='cuty' OR $mod=='izin'){
 echo'
 <script src="'.$base_url.'sw-mod/sw-assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="'.$base_url.'sw-mod/sw-assets/js/plugins/datatables/dataTables.bootstrap.min.js"></script>
@@ -77,126 +77,37 @@ echo'
 }
 echo'
 <script src="'.$base_url.'/sw-mod/sw-assets/js/sw-script.js"></script>';
-if ($mod =='absent'){?>
+if ($mod =='absent' || $mod == 'absents'){?>
+<script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
 <script type="text/javascript">
-    var result;
-    $(document).ready(function getLocation() {
-        result = document.getElementById("latitude");
-       // 
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-        } else {
-            swal({title: 'Oops!', text:'Maaf, browser Anda tidak mendukung geolokasi HTML5.', icon: 'error', timer: 3000,});
-        }
-    });
-    
-    // Define callback function for successful attempt
-    function successCallback(position) {
-       result.innerHTML =""+ position.coords.latitude + ","+position.coords.longitude + "";
+    var latitude_building =L.latLng(<?php echo $row_building['latitude_longtitude'];?>);
+    navigator.geolocation.getCurrentPosition(function(location) {
+    var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+    var markerFrom = L.circleMarker(latitude_building, { color: "#F00", radius: 10 });
+    var markerTo =  L.circleMarker(latlng);
+    var from = markerFrom.getLatLng();
+    var to = markerTo.getLatLng();
+    var jarak = from.distanceTo(to).toFixed(1) / 10;
+    var latitude =""+location.coords.latitude+","+location.coords.longitude+"";
+    $("#latitude").text(latitude);
+    $("#jarak").text(jarak);
+    var radius ='<?php echo $row_building['radius'];?>';
+     //alert(jarak);
+    if (radius > jarak){
+        // dalam radius
+      swal({title: 'Didalam Radius!', text:'Posisi Anda saat ini didalam radius '+jarak+'M, Silahkan Absen!', icon: 'success', timer: 2000,});
+    }else{
+      swal({title: 'Oops!', text:'Posisi Anda saat ini di radius '+jarak+'M, tidak ditempat atau Jauh dari Radius!', icon: 'error', timer: 2000,});
     }
 
-    // Define callback function for failed attempt
-    function errorCallback(error) {
-        if(error.code == 1) {
-            swal({title: 'Oops!', text:'Anda telah memutuskan untuk tidak membagikan posisi Anda, tetapi tidak apa-apa. Kami tidak akan meminta Anda lagi.', icon: 'error', timer: 3000,});
-        } else if(error.code == 2) {
-            swal({title: 'Oops!', text:'Jaringan tidak aktif atau layanan penentuan posisi tidak dapat dijangkau.', icon: 'error', timer: 3000,});
-        } else if(error.code == 3) {
-            swal({title: 'Oops!', text:'Waktu percobaan habis sebelum bisa mendapatkan data lokasi.', icon: 'error', timer: 3000,});
-        } else {
-            swal({title: 'Oops!', text:'Waktu percobaan habis sebelum bisa mendapatkan data lokasi.', icon: 'error', timer: 3000,});
-        }
-    }
-</script>
-<?php 
-// ========== Cek untuk deteksi Device Mobile===================//
-if($mobile =='true'){?>
-<script type="text/javascript">
-    var result;
-    $(document).ready(function getLocation() {
-        result = document.getElementById("latitude");
-       // 
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-        } else {
-            swal({title: 'Oops!', text:'Maaf, browser Anda tidak mendukung geolokasi HTML5.', icon: 'error', timer: 3000,});
-        }
-    });
-    
-    // Define callback function for successful attempt
-    function successCallback(position) {
-       result.innerHTML =""+ position.coords.latitude + ","+position.coords.longitude + "";
-    }
 
-    // Define callback function for failed attempt
-    function errorCallback(error) {
-        if(error.code == 1) {
-            swal({title: 'Oops!', text:'Anda telah memutuskan untuk tidak membagikan posisi Anda, tetapi tidak apa-apa. Kami tidak akan meminta Anda lagi.', icon: 'error', timer: 3000,});
-        } else if(error.code == 2) {
-            swal({title: 'Oops!', text:'Jaringan tidak aktif atau layanan penentuan posisi tidak dapat dijangkau.', icon: 'error', timer: 3000,});
-        } else {
-            swal({title: 'Oops!', text:'Waktu percobaan habis sebelum bisa mendapatkan data lokasi.', icon: 'error', timer: 3000,});
-        }
-    }
-
-    $(document).on('change','#webcam',function(){
-        var file_data = $('#webcam').prop('files')[0];  
-        var image_name = file_data.name;
-        var image_extension = image_name.split('.').pop().toLowerCase();
-        var latitude = $('.latitude').html();
-        $('.progress').show();
-
-        if(jQuery.inArray(image_extension,['gif','jpg','jpeg']) == -1){
-          swal({title: 'Oops!', text: 'File yang di unggah tidak sesuai dengan format, File harus jpg, jpeg, gif.!', icon: 'error', timer: 2000,});
-        }
-
-        var form_data = new FormData();
-        form_data.append("webcam",file_data);
-        $.ajax({
-            xhr : function() {
-                var xhr = new window.XMLHttpRequest();
-                xhr.upload.addEventListener('progress', function(e){
-                    if(e.lengthComputable){
-                        console.log('Bytes Loaded : ' + e.loaded);
-                        console.log('Total Size : ' + e.total);
-                        console.log('Persen : ' + (e.loaded / e.total));
-                        var percent = Math.round((e.loaded / e.total) * 100);
-                        $('#progressBar').attr('aria-valuenow', percent).css('width', percent + '%').text(percent + '%');
-                    }
-                });
-                return xhr;
-            },
-          url:'./sw-proses?action=absent&latitude='+latitude+'',
-          method:'POST',
-          data:form_data,
-          contentType:false,
-          cache:false,
-          processData:false,
-          success:function(data){
-                var results = data.split("/");
-                $results = results[0];
-                $results2 = results[1];
-                if($results =='success'){
-                    swal({title: 'Berhasil!', text:$results2, icon: 'success', timer: 3500,});
-                    setTimeout("location.href = './';",3600);
-                    $('.progress').delay(500).fadeOut('slow');
-                } else {
-                    swal({title: 'Oops!', text: data, icon: 'error', timer: 3500,});
-                    $('.progress').delay(500).fadeOut('slow');
-                }
-          }
-        });
-});
-</script>
-
-<?php }else{?>
-<!-- SCRIPT ABSENSI DENGAN WEBCAME VIA PC -->
-<script type="text/javascript">
-    // start webcame
+     /* ------------------------------------------
+        Start Kamera Webcame
+    ----------------------------------------------*/
     Webcam.set({
-        width: 590,height: 460,
+        width: 1080,height: 1350,
         image_format: 'jpeg',
-        jpeg_quality:80,
+        jpeg_quality:100,
     });
 
     var cameras = new Array(); //create empty array to later insert available devices
@@ -211,28 +122,49 @@ if($mobile =='true'){?>
         });
     })
 
-    // Set Camera Depan =========
+    /* ----------------------------
+        Setting Camera Depan HP
+    -------------------------------*/
     Webcam.set('constraints',{
         width: 590,
+        facingMode: 'user',
         height: 460,
         image_format: 'jpeg',
         jpeg_quality:80,
         sourceId: cameras[0]
-    });
+     })
+        //  window.location.reload(true);
+    
+    
+     
+    //  function setmode(facing) {
+    //      Webcam.set('constraints',{
+    //     width: 590,
+    //     facingMode: facing,
+    //     height: 460,
+    //     image_format: 'jpeg',
+    //     jpeg_quality:80,
+    //     sourceId: cameras[0]
+    //  })
+    //      window.location.reload(true);
+    //  }
 
     Webcam.attach('.webcam-capture');
     // preload shutter audio clip
     var shutter = new Audio();
     //shutter.autoplay = true;
     shutter.src = navigator.userAgent.match(/Firefox/) ? './sw-mod/sw-assets/js/webcamjs/shutter.ogg' : './sw-mod/sw-assets/js/webcamjs/shutter.mp3';
-    function captureimage() {
-    var latitude = $('.latitude').html();
+
+    $(document).on('click', '.absent-capture', function(){ 
+        //var latitude = $('.latitude').html();
         // play sound effect
         shutter.play();
+        var latitude = $('.latitude').html();
+        //var jarak = $('.jarak').html();
         // take snapshot and get image data
         Webcam.snap( function(data_uri) {
             // display results in page
-            Webcam.upload(data_uri, './sw-proses?action=absent&latitude='+latitude+'',
+            Webcam.upload(data_uri, './sw-proses?action=absent&latitude='+latitude+'&radius='+jarak+'',
                 function(code,text) {
                     $data       =''+text+'';
                     var results = $data.split("/");
@@ -245,10 +177,11 @@ if($mobile =='true'){?>
                         swal({title: 'Oops!', text:text, icon: 'error', timer: 3500,});
                     }
             });    
-        } );
-    }
+        });
+    })
+});
 </script>
-<?php }}?>
+<?php }?>
   <!-- </body></html> -->
   </body>
 </html><?php }?>

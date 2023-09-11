@@ -3,9 +3,9 @@ date_default_timezone_set('Asia/Jakarta');
 $pacth_url	='http://'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"].'';
 // -------------- Koneksi Database ------------
 $DB_HOST 	= 'localhost';
-$DB_NAME 	= 'n1274787_ci3absen'; // Nama database
-$DB_USER 	= 'n1274787_absen123'; // User Database
-$DB_PASSWD  = '@Absen321'; // Password Database
+$DB_USER 	= 'u1541084_selfiev3'; // User Database
+$DB_PASSWD  = 'selfiev3'; // Password Database
+$DB_NAME 	= 'u1541084_selfiev3'; // Nama database
 // -------------- Koneksi Database ------------
 @define("DB_HOST", $DB_HOST);
 @define("DB_USER", $DB_USER);

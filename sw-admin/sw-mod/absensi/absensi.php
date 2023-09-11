@@ -96,7 +96,7 @@ echo'
                     if($month ==8){echo'<option value="08" selected>Agustus</option>';}else{echo'<option value="08">Agustus</option>';}
                     if($month ==9){echo'<option value="09" selected>September</option>';}else{echo'<option value="09">September</option>';}
                     if($month ==10){echo'<option value="10" selected>Oktober</option>';}else{echo'<option value="10">Oktober</option>';}
-                    if($month ==11){echo'<option value="12" selected>November</option>';}else{echo'<option value="12">November</option>';}
+                    if($month ==11){echo'<option value="11" selected>November</option>';}else{echo'<option value="11">November</option>';}
                     if($month ==12){echo'<option value="12" selected>Desember</option>';}else{echo'<option value="12">Desember</option>';}
                   echo'
                   </select>
@@ -184,7 +184,7 @@ echo'
                 if($month ==8){echo'<option value="08" selected>Agustus</option>';}else{echo'<option value="08">Agustus</option>';}
                 if($month ==9){echo'<option value="09" selected>September</option>';}else{echo'<option value="09">September</option>';}
                 if($month ==10){echo'<option value="10" selected>Oktober</option>';}else{echo'<option value="10">Oktober</option>';}
-                if($month ==11){echo'<option value="12" selected>November</option>';}else{echo'<option value="12">November</option>';}
+                if($month ==11){echo'<option value="11" selected>November</option>';}else{echo'<option value="11">November</option>';}
                 if($month ==12){echo'<option value="12" selected>Desember</option>';}else{echo'<option value="12">Desember</option>';}
               echo'
               </select>

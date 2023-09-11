@@ -39,10 +39,11 @@ echo'
               <thead>
               <tr>
                 <th style="width:20px" class="text-center">No</th>
+                <th class="text-center">ID</th>
                 <th>Nama Shift</th>
                 <th>Waktu Masuk</th>
                 <th>Waktu Pulang</th>
-                <th class="text-center">Jumlah Katyawan</th>
+                <th class="text-center">Jumlah Pegawai</th>
                 <th style="width:100px">Aksi</th>
               </tr>
               </thead>
@@ -58,6 +59,7 @@ echo'
                 echo'
                 <tr>
                   <td class="text-center">'.$no.'</td>
+                  <td class="text-center">'.$row['shift_id'].'</td>
                   <td>'.$row['shift_name'].'</td>
                   <td>'.$row['time_in'].'</td>
                   <td>'.$row['time_out'].'</td>

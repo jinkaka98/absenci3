@@ -13,7 +13,7 @@ function loading(){
 /* ----------- Add ------------*/
 $('.add-lokasi').submit(function (e) {
     if($('input[type=text]').val()=='' && $('textarea.address').val()==''){    
-        swal({title:'Oops!', text: 'Harap bidang inputan tidak boleh ada yang kosong.!', icon: 'error', timer: 1500,});
+        swal({title:'Oops!', text: 'Harap bidang inputan tidak boleh ada yang kosong.!', icon: 'error', timer: 2500,});
         return false;
         loading();
     }
@@ -35,9 +35,9 @@ $('.add-lokasi').submit(function (e) {
                 if (data == 'success') {
                     swal({title: 'Berhasil!', text: 'Data lokasi  berhasil disimpan.!', icon: 'success', timer: 1500,});
                    $('#modalAdd').modal('hide');
-                   setTimeout(function(){ location.reload(); }, 1500);
+                   window.setTimeout(window.location.href = "./lokasi",2500);
                 } else {
-                    swal({title: 'Oops!', text: data, icon: 'error', timer: 1500,});
+                    swal({title: 'Oops!', text: data, icon: 'error', timer: 2500,});
                 }
 
             },
@@ -51,7 +51,7 @@ $('.add-lokasi').submit(function (e) {
 /* -------------------- Edit ------------------- */
 $('.update-lokasi').submit(function (e) {
     if($('#txtname').val()==''){    
-         swal({title: 'Oops!', text: 'Harap bidang inputan tidak boleh ada yang kosong.!', icon: 'error', timer: 1500,});
+         swal({title: 'Oops!', text: 'Harap bidang inputan tidak boleh ada yang kosong.!', icon: 'error', timer: 2500,});
          loading();
         return false;
     }
@@ -73,10 +73,10 @@ $('.update-lokasi').submit(function (e) {
                 if (data == 'success') {
                     swal({title: 'Berhasil!', text: 'Data Lokasi berhasil disimpan.!', icon: 'success', timer: 1500,});
                    $('#modalEdit').modal('hide');
-                   setTimeout(function(){ location.reload(); }, 1500);
+                    window.setTimeout(window.location.href = "./lokasi",2500);
 
                 } else {
-                    swal({title: 'Oops!', text: data, icon: 'error', timer: 1500,});
+                    swal({title: 'Oops!', text: data, icon: 'error', timer: 2500,});
                 }
 
             },
@@ -123,6 +123,9 @@ $('.update-lokasi').submit(function (e) {
         }  
     });
 }); 
+
+
+
 
 $(".btn-print").on('click',function () {
     $("#printarea").show();

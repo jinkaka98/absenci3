@@ -1,4 +1,7 @@
+
 <?php
+echo "Mohon beli Source code dulu";
+die;
 session_start();
 if(empty($_SESSION['SESSION_USER']) && empty($_SESSION['SESSION_ID'])){
     header('location:../../login/');
