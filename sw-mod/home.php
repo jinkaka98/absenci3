@@ -36,16 +36,16 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                 </div>
 
 
-                <div class="form-links mt-2">
+                <!-- <div class="form-links mt-2">
                     <div>
                         <a href="registrasi">Mendaftar</a>
                     </div>
                     <div><a href="forgot" class="text-muted">Lupa Password?</a></div>
-                </div>
+                </div> -->
 
                 <div class="form-button-group  transparent">
                    <button type="submit" class="btn btn-primary btn-block"><ion-icon name="log-in-outline"></ion-icon> Masuk</button>
-                   <a href="oauth/google" class="btn btn-danger btn-block"><ion-icon name="logo-google"></ion-icon> Masuk Dengan Google</a>
+                   <!-- <a href="oauth/google" class="btn btn-danger btn-block"><ion-icon name="logo-google"></ion-icon> Masuk Dengan Google</a> -->
                     <!-- <a href="https://timkoding.com/downloads/source-code-absensi-online-absen-selfie-deteksi-lokasi-berbasis-web-bonus-source-code-e-book-v3-lock-lokasi/" class="btn btn-warning  btn-block">Beli Aplikasi</a> -->
                 </div>
 
