@@ -46,7 +46,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                 <div class="form-button-group  transparent">
                    <button type="submit" class="btn btn-primary btn-block"><ion-icon name="log-in-outline"></ion-icon> Masuk</button>
                    <a href="oauth/google" class="btn btn-danger btn-block"><ion-icon name="logo-google"></ion-icon> Masuk Dengan Google</a>
-                    <a href="https://timkoding.com/downloads/source-code-absensi-online-absen-selfie-deteksi-lokasi-berbasis-web-bonus-source-code-e-book-v3-lock-lokasi/" class="btn btn-warning  btn-block">Beli Aplikasi</a>
+                    // <a href="https://timkoding.com/downloads/source-code-absensi-online-absen-selfie-deteksi-lokasi-berbasis-web-bonus-source-code-e-book-v3-lock-lokasi/" class="btn btn-warning  btn-block">Beli Aplikasi</a>
                 </div>
 
             </form>
