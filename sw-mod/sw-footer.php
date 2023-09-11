@@ -46,7 +46,7 @@ echo'
 ob_end_flush();
 echo'
 <footer class="text-muted text-center">
-   <p>© 2021 - '.$year.' '.$site_name.' - Design By: <span id="credits"><a class="credits_a" href="https://x.com" target="_blank">x</a></span></p>
+   <p style="color:#ededf5;">© 2021 - '.$year.' '.$site_name.' - Design By: <span id="credits"><a class="credits_a" style="color:#ededf5;" href="https://x.com" target="_blank">x</a></span></p>
 </footer>
 <!-- ///////////// Js Files ////////////////////  -->
 <!-- Jquery -->
