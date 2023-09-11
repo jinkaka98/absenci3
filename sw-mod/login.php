@@ -68,5 +68,5 @@ $kode_karyawan = $huruf . sprintf("%03s", $urutan);
     header('location:./');
   }
 
-  include_once 'sw-mod/sw-footer.php';
+//   include_once 'sw-mod/sw-footer.php';
 } ?>
