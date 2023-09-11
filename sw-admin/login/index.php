@@ -61,10 +61,14 @@ if(!empty($_SESSION['SESSION_USER']) && !empty($_SESSION['SESSION_ID'])){
      <hr>
       <div class="row">
       <div class="col-md-12" style="min-height:40px;"><span id="stat"></span></div>
-        <div class="col-xs-12">
+        <div>
           <button type="submit" class="btn btn-primary btn-block btn-flat" id="login">Login to Admin</button>
-           <!-- <a href="https://timkoding.com/downloads/source-code-absensi-online-absen-selfie-deteksi-lokasi-berbasis-web-bonus-source-code-e-book-v3-lock-lokasi/" class="btn btn-warning  btn-block">Beli Aplikasi</a> -->
+           <a href="https://timkoding.com/downloads/source-code-absensi-online-absen-selfie-deteksi-lokasi-berbasis-web-bonus-source-code-e-book-v3-lock-lokasi/" class="btn btn-warning  btn-block">Beli Aplikasi</a>
         </div>
+        <!-- <div class="col-xs-12">
+        <button type="submit" class="btn btn-primary btn-block btn-flat" id="login">Login to Admin</button>
+         <a href="https://timkoding.com/downloads/source-code-absensi-online-absen-selfie-deteksi-lokasi-berbasis-web-bonus-source-code-e-book-v3-lock-lokasi/" class="btn btn-warning  btn-block">Beli Aplikasi</a>
+      </div> -->
         <!-- /.col -->
       </div>
 
