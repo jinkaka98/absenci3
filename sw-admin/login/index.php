@@ -80,7 +80,7 @@ if(!empty($_SESSION['SESSION_USER']) && !empty($_SESSION['SESSION_ID'])){
         <script src="../sw-assets/js/jquery.min.js"></script>
         <script src="../sw-assets/js/bootstrap.min.js"></script>
         <script src="../sw-assets/js/adminlte.js"></script>
-        <script src="../sw-assets/js/demo.js"></script>
+        <!-- <script src="../sw-assets/js/demo.js"></script> -->
         <script src="./jquery-login.js"></script>
     </body>
 </html>
