@@ -1,7 +1,7 @@
 
 <?php
-echo "Mohon beli Source code dulu";
-die;
+// echo "Mohon beli Source code dulu";
+// die; ini harus di matiin
 session_start();
 if(empty($_SESSION['SESSION_USER']) && empty($_SESSION['SESSION_ID'])){
     header('location:../../login/');

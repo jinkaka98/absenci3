@@ -74,7 +74,7 @@ if(!empty($_SESSION['SESSION_USER']) && !empty($_SESSION['SESSION_ID'])){
 
 <footer class="text-muted text-center">
     <small></span><span id="credits"><a class="credits" href='https://timkoding.com' target="_blank">Tim Koding Indonesia</a> - All Rights Reserveds</span>
-    <em>Version 3.0 Update 2021</em></small>
+    <em>Version 3.0 Update 2030</em></small>
 </footer>
 
         <script src="../sw-assets/js/jquery.min.js"></script>
