@@ -39,7 +39,7 @@ echo'
                 <th class="align-middle">Tanggal</th>
                 <th class="align-middle text-center"><i class="fa fa-picture-o" aria-hidden="true"></i></th>
                 <th class="align-middle text-center">Scan Masuk</th>
-                <th class="align-middle text-center">Terlambat</th>
+                <!-- <th class="align-middle text-center">Terlambat</th> -->
                 <th class="align-middle text-center"><i class="fa fa-picture-o" aria-hidden="true"></i></th>
                 <th class="align-middle text-center">Scan Pulang</th>
                 <th class="align-middle text-center">Pulang Cepat</th>
@@ -232,9 +232,9 @@ echo'
           <p>Hadir : <span class="label label-success">'.$hadir->num_rows.'</span></p>
         </div>
 
-        <div class="col-md-3">
+       <!-- <div class="col-md-3">
           <p>Terlambat : <span class="label label-danger">'.$telat->num_rows.'</span></p>
-        </div>
+        </div> -->
 
         <div class="col-md-3">
           <p>Sakit : <span class="label label-warning">'.$sakit->num_rows.'</span></p>
