@@ -1,6 +1,6 @@
 <?php  //error_reporting(0);
-echo "Demo telah berakhir";
- die;
+// echo "Demo telah berakhir";
+//  die;
 /* Admin Panel
 * (c) 08 Agustus 2021
 */

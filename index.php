@@ -1,6 +1,6 @@
 <?php //error_reporting(0);
-// echo "Waktu Demo Telah Berakhir";
- die;
+// // echo "Waktu Demo Telah Berakhir";
+//  die;
   ob_start();
   session_start();
   include_once 'sw-library/sw-config.php';
