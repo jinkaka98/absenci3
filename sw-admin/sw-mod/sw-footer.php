@@ -13,11 +13,11 @@ function convert($size){
     return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
 }
 echo'
-  <footer class="main-footer">
+  <footer class="main-footer" style="color:#fff;">
     <div class="pull-right hidden-xs">Theme LTE / 
       '.convert(memory_get_usage()).'
     </div>
-     &copy; 2021 - '.DATE('Y').' '.$site_name.' | Design With <i class="fa fa-heart"></i> From <span id="credits"><a class="credits" href="https://timkoding.com" target="_blank" id="credits">Tim Koding Indonesia</a> - All Rights Reserved</span>
+     &copy; 2021 - '.DATE('Y').' '.$site_name.' | Design With <i class="fa fa-heart"></i> From <span id="credits"><a class="credits" style="color:#fff;" href="https://timkoding.com" target="_blank" id="credits">Tim Koding Indonesia</a> - All Rights Reserved</span>
   </footer>
 </div>
 <!-- wrapper -->

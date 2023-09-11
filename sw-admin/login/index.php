@@ -80,7 +80,7 @@ if(!empty($_SESSION['SESSION_USER']) && !empty($_SESSION['SESSION_ID'])){
 
 
 <footer class="text-muted text-center">
-    <small></span><span id="credits"><a class="credits" href='https://timkoding.com' target="_blank">Tim Koding Indonesia</a> - All Rights Reserveds</span>
+    <small></span><span id="credits" style="color:#f7f7f7;"><a style="color:#fff;" class="credits"  href='https://timkoding.com' target="_blank">Tim Koding Indonesia</a> - All Rights Reserveds</span>
     <em>Version 3.0 Update 2030</em></small>
 </footer>
 
