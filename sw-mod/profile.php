@@ -17,10 +17,10 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
     <div id="appCapsule">
         <div class="section mt-3 text-center">
             <div class="avatar-section">
-                <input type="file" class="upload" name="file" id="avatar" accept=".jpg, .jpeg, ,gif, .png" capture="camera">
+                <input type="file" class="upload" name="file" id="avatar" accept=".jpg, .jpeg, ,gif, .png" capture="camera" readonly>
                 <a href="#">';
                 if($row_user['photo'] ==''){
-                // echo'<img src="'.$base_url.'sw-content/avatar.jpg" alt="image" class="imaged w100 rounded">';
+                echo'<img src="'.$base_url.'sw-content/avatar.jpg" alt="image" class="imaged w100 rounded">';
                 }else{
                     echo'
                     <img src="timthumb?src='.$base_url.'sw-content/karyawan/'.$row_user['photo'].'&h=100&w=105" alt="avatar" class="imaged w100 rounded">';}
@@ -102,7 +102,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                                     if($row['building_id'] == $row_user['building_id']){ 
                                         echo'<option value="'.$row['building_id'].'" selected>'.$row['name'].'</option>';
                                     }else{
-                                        echo'<option value="'.$row['building_id'].'">'.$row['name'].'</option>';
+                                        // echo'<option value="'.$row['building_id'].'">'.$row['name'].'</option>';
                                     }
                                 }echo'
                                 </select>
