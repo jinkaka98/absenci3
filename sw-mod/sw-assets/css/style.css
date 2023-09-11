@@ -12376,7 +12376,7 @@ h6 .badge {
 
 .text-muted {
   font-size: 13px;
-  color: #958d9e !important;
+  color: #ededf5 !important;
 }
 
 h1 {
@@ -15902,4 +15902,8 @@ a.text-dark {
   color: #FFF;
   margin-top: 7px;
   font-size: 24px;
+}
+
+.credit_a {
+  color: #ededf5;
 }
