@@ -41,7 +41,7 @@ $row_building = $result_building->fetch_assoc();
                         <div class="webcam-capture"></div>
                          <div class="btn-group" role="group" aria-label="Basic example">
                           <a href="" id="front" class="btn btn-primary">Front</a>
-                          <a href="/absents" id="back" class="btn btn-warning">Back</a>
+                          <!-- <a href="/absents" id="back" class="btn btn-warning">Back</a> -->
                         </div>
                         <div class="form-group basic">';
                             if($result_absent->num_rows > 0){
