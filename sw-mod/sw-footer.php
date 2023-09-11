@@ -12,12 +12,12 @@ echo'
             </div>
         </a>
 
-        <a href="absent" class="item">
+        <!-- <a href="absent" class="item">
             <div class="col">
                 <ion-icon name="camera-outline"></ion-icon>
                 <strong>Absen</strong>
             </div>
-        </a>
+        </a> -->
 
         <a href="./cuty" class="item">
             <div class="col">
