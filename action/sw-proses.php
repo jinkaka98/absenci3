@@ -69,8 +69,8 @@ break;
 
 /* ------------- REGISTRASI ---------------*/
 case 'registrasi':
-    echo "Mohon untuk membeli sourec code terlebih dahulu";
-    die;
+    // echo "Mohon untuk membeli sourec code terlebih dahulu";
+    // die;
 $error = array();
 
   if (empty($_POST['employees_code'])) {
@@ -363,8 +363,8 @@ if (empty($error)){
 // ----------- UPDATE PROFILE -------------------//
 break;
 case 'profile':
-    echo "Mohon untuk membeli source code terlebih dahulu";
-    die;
+    // echo "Mohon untuk membeli source code terlebih dahulu";
+    // die;
   $error = array();
 
   if (empty($_POST['employees_name'])) {
@@ -411,8 +411,8 @@ break;
 
 // ----------- UPDATE PASSWORD -------------------//
 case 'update-password':
-    echo "Mohon untuk membeli Source code terlebih dahulu";
-    die;
+    // echo "Mohon untuk membeli Source code terlebih dahulu";
+    // die;
  $error = array();
   if (empty($_POST['employees_email'])) {
       $error[] = 'tidak boleh kosong';
@@ -454,8 +454,8 @@ break;
 
 /* -------- UPDATE PHOTO ----------------*/
 case 'update-photo':
-    echo "Mohon untuk membeli Source code terlebih dahulu";
-    die;
+    // echo "Mohon untuk membeli Source code terlebih dahulu";
+    // die;
   $file_name   = $_FILES['file'] ['name'];
   $size        = $_FILES['file'] ['size'];
   $error       = $_FILES['file'] ['error'];
