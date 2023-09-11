@@ -110,8 +110,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         </div>
 
                         <hr>
-                            <button type="submit" class="btn btn-danger mr-1 btn-lg btn-block btn-profile">Simpan</button>
-                        
+                            <!-- <button type="submit" class="btn btn-danger mr-1 btn-lg btn-block btn-profile">Simpan</button> -->
                     </form>
 
                 </div>
