@@ -98,14 +98,14 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         </a>
                     </div>
                    
-                    <div class="item">
+                   <!-- <div class="item">
                         <a href="./history">
                             <div class="icon-wrapper bg-success">
                                <ion-icon name="document-text-outline"></ion-icon>
                             </div>
                             <strong>History</strong>
                         </a>
-                    </div>
+                    </div> -->
 
                     <div class="item">
                         <a href="./profile">

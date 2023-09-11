@@ -26,12 +26,12 @@ echo'
             </div>
         </a>
 
-        <a href="./history" class="item">
+       <!-- <a href="./history" class="item">
             <div class="col">
                  <ion-icon name="document-text-outline"></ion-icon>
                 <strong>History</strong>
             </div>
-        </a>
+        </a> -->
 
         
         <a href="./profile" class="item">
