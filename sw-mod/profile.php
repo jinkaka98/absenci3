@@ -60,7 +60,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="select4">Jabatan</label>
-                                <select class="form-control custom-select" name="position_id" readonly>';
+                                <!-- <select class="form-control custom-select" name="position_id">';
                                       $query="SELECT * from position order by position_name ASC";
                                       $result = $connection->query($query);
                                       while($rowa = $result->fetch_assoc()) { 
@@ -70,14 +70,14 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                                         echo'<option value="'.$rowa['position_id'].'">'.$rowa['position_name'].'</option>';
                                       }
                                       }echo'
-                                </select>
+                                </select> -->
                             </div>
                         </div>
 
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="select4">Jam Kerja</label>
-                                <select class="form-control custom-select" name="shift_id" readonly>';
+                                <!-- <select class="form-control custom-select" name="shift_id">';
                                      $query="SELECT shift_id,shift_name from shift order by shift_name ASC";
                                       $result = $connection->query($query);
                                       while($rowa = $result->fetch_assoc()) {
@@ -87,7 +87,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                                         echo'<option value="'.$rowa['shift_id'].'">'.$rowa['shift_name'].'</option>';
                                       }
                                       }echo'
-                                </select>
+                                </select> -->
                             </div>
                         </div>
 
@@ -95,7 +95,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="password4">Lokasi Penempatan</label>
-                                <select class="form-control custom-select" name="building_id" readonly>';
+                                <select class="form-control custom-select" name="building_id">';
                                 $query  ="SELECT building_id,name,address from building";
                                 $result = $connection->query($query);
                                 while($row = $result->fetch_assoc()) {
