@@ -45,9 +45,9 @@ echo'
 }
 ob_end_flush();
 echo'
-<footer class="text-muted text-center">
+<!-- <footer class="text-muted text-center">
    <p>© 2021 - '.$year.' '.$site_name.' - Design By: <span id="credits"><a class="credits_a" href="https://timkoding.com" target="_blank">timkoding.com</a></span></p>
-</footer>
+</footer> -->
 <!-- ///////////// Js Files ////////////////////  -->
 <!-- Jquery -->
 <script src="'.$base_url.'sw-mod/sw-assets/js/lib/jquery-3.4.1.min.js"></script>
