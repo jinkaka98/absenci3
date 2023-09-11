@@ -125,7 +125,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                     <form id="update-password">
                         <div class="form-group boxed">
                             <div class="input-wrapper">
-                                <label class="label" for="text4">Kode Pegawai</label>
+                                <label class="label" for="text4">Email Login</label>
                                 <input type="email" class="form-control" name="employees_email" value="'.$row_user['employees_email'].'" style="background:#eeeeee" readonly>
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
