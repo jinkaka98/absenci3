@@ -57,8 +57,11 @@ if(isset($_COOKIE['COOKIES_MEMBER'])){
                 <ion-icon name="menu-outline"></ion-icon>
             </a>
         </div>
-        <div class="pageTitle">
+        <!-- <div class="pageTitle">
             <img src="'.$base_url.'sw-content/'.$site_logo.'" alt="logo" class="logo">
+        </div> -->
+        <div class="pageTitle">
+            <p>Kuliner Jogja La Rise</p>
         </div>
         <div class="right">
             <div class="headerButton" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true">';
