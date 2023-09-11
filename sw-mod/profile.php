@@ -20,7 +20,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                 <input type="file" class="upload" name="file" id="avatar" accept=".jpg, .jpeg, ,gif, .png" capture="camera">
                 <a href="#">';
                 if($row_user['photo'] ==''){
-                echo'<img src="'.$base_url.'sw-content/avatar.jpg" alt="image" class="imaged w100 rounded">';
+                // echo'<img src="'.$base_url.'sw-content/avatar.jpg" alt="image" class="imaged w100 rounded">';
                 }else{
                     echo'
                     <img src="timthumb?src='.$base_url.'sw-content/karyawan/'.$row_user['photo'].'&h=100&w=105" alt="avatar" class="imaged w100 rounded">';}
@@ -60,34 +60,34 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="select4">Jabatan</label>
-                                <!-- <select class="form-control custom-select" name="position_id">';
+                                <select class="form-control custom-select" name="position_id">';
                                       $query="SELECT * from position order by position_name ASC";
                                       $result = $connection->query($query);
                                       while($rowa = $result->fetch_assoc()) { 
                                       if($rowa['position_id'] == $row_user['position_id']){
                                         echo'<option value="'.$rowa['position_id'].'" selected>'.$rowa['position_name'].'</option>';
                                       }else{
-                                        echo'<option value="'.$rowa['position_id'].'">'.$rowa['position_name'].'</option>';
+                                        // echo'<option value="'.$rowa['position_id'].'">'.$rowa['position_name'].'</option>';
                                       }
                                       }echo'
-                                </select> -->
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="select4">Jam Kerja</label>
-                                <!-- <select class="form-control custom-select" name="shift_id">';
+                                <select class="form-control custom-select" name="shift_id">';
                                      $query="SELECT shift_id,shift_name from shift order by shift_name ASC";
                                       $result = $connection->query($query);
                                       while($rowa = $result->fetch_assoc()) {
                                       if($rowa['shift_id'] == $row_user['shift_id']){ 
                                         echo'<option value="'.$rowa['shift_id'].'" selected>'.$rowa['shift_name'].'</option>';
                                       }else{
-                                        echo'<option value="'.$rowa['shift_id'].'">'.$rowa['shift_name'].'</option>';
+                                        // echo'<option value="'.$rowa['shift_id'].'">'.$rowa['shift_name'].'</option>';
                                       }
                                       }echo'
-                                </select> -->
+                                </select>
                             </div>
                         </div>
 
