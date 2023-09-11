@@ -603,9 +603,9 @@ echo'
     <p>Hadir : <span class="badge badge-success">'.$hadir->num_rows.'</span></p>
   </div>
 
-  <div class="col-md-3">
+  <!-- <div class="col-md-3">
     <p>Terlambat : <span class="label badge badge-danger">'.$telat->num_rows.'</span></p>
-  </div>
+  </div> -->
   
 
   <div class="col-md-3">
