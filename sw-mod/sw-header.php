@@ -147,14 +147,14 @@ echo'<!-- App Sidebar -->
                             </a>
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <a href="./history" class="item">
                                 <div class="icon-box bg-danger">
                                     <ion-icon name="document-text-outline"></ion-icon>
                                 </div>
                                    History
                             </a>
-                        </li>
+                        </li> -->
                       
                         <li>
                             <a href="profile" class="item">
