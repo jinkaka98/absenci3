@@ -139,7 +139,7 @@ echo'
 
         // Status Absensi Jam Masuk
         if($row_absen['status']=='Telat'){
-          $status_time_in ='<label class="label label-danger">Terlambat</label>';
+          // $status_time_in ='<label class="label label-danger">Terlambat</label>';
         }
           elseif ($row_absen['status']=='Tepat Waktu') {
           $status_time_in ='<label class="label label-info">'.$row_absen['status'].'</label>';
