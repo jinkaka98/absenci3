@@ -25,8 +25,6 @@ echo'
           <div class="box-tools pull-right">';
           if($level_user==1){
             echo'
-            
-            <a href="#import" class="btn btn-warning" title="Import" data-toggle="modal"> Import</a>
             <a href="'.$mod.'&op=add" class="btn btn-success btn-flat"><i class="fa fa-plus"></i> Tambah Baru</a>';}
           else{
             echo'<button type="button" class="btn btn-success btn-flat access-failed"><i class="fa fa-plus"></i> Tambah Baru</button>';
@@ -88,38 +86,9 @@ echo'
     </div>
   </div> 
 </section>';
-
-echo'
-<div id="import" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-      <div class="modal-dialog modal-md">
-        <div class="modal-content">
-          <form id="validate" class="import" method="post" enctype="multipart/form-data">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Import Data Pegawai</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label>Upload File</label>
-                <div class="input-group">
-                    <span class="input-group-btn">
-                    <span class="btn btn-primary btn-file"><i class="fa fa-files"></i> Upload
-                    <input type="file" class="upload" name="files" accept=".csv">
-                     </span></span><input type="text" class="form-control" placeholder="Upload file Excel" readonly="">
-                  </div>
-              </div>
-              <p><a href="../sw-content/sample-import.csv">Download Sample File</a></p>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-check"></i> Simpan</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>';
-
-    
 break;
+
+
 case 'add':
 echo'
 <section class="content-header">
@@ -256,7 +225,7 @@ echo'
         <div class="box-header">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab_1" data-toggle="tab">Profil</a></li>
-            <li><a href="#tab_2" data-toggle="tab">Ubah Email & Password</a></li>
+            <li><a href="#tab_2" data-toggle="tab">Ubah Password</a></li>
           </ul>
         </div>
 
@@ -378,7 +347,7 @@ echo'
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Email</label>
                   <div class="col-sm-6">
-                    <input type="text" id="email" class="form-control" name="employees_email" value="'.$row['employees_email'].'" required>
+                    <input type="text" class="form-control" name="employees_email" value="'.$row['employees_email'].'" readonly required>
                     <input type="hidden"  name="id" value="'.$row['id'].'" readonly required>
                   </div>
                 </div>
@@ -386,8 +355,7 @@ echo'
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Password</label>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control" id="password" name="employees_password"  required>
-                    <input type="hidden" class="form-control" id="password" name="employees_old_password" value="'.$row['employees_password'].'"  required>
+                    <input type="password" class="form-control" id="password" name="employees_password" required>
                   </div>
                 </div>
 

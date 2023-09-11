@@ -108,7 +108,7 @@ $('.update-karyawan').submit(function (e) {
 
 /* -------------------- Edit Password ------------------- */
 $('.update-password').submit(function (e) {
-    if($("#email").val()==""){    
+    if($("#password").val()==""){    
          swal({title: 'Oops!', text: 'Harap bidang inputan tidak boleh ada yang kosong.!', icon: 'error', timer: 1500,});
          loading();
         return false;
@@ -129,7 +129,7 @@ $('.update-password').submit(function (e) {
             },
             success: function (data) {
                 if (data == 'success') {
-                    swal({title: 'Berhasil!', text: 'Email / Password Baru berhasil disimpan.!', icon: 'success', timer: 2000,});
+                    swal({title: 'Berhasil!', text: 'Password Baru berhasil disimpan.!', icon: 'success', timer: 2000,});
                    
                    //window.setTimeout(window.location.href = "./karyawan",2500);
 
@@ -182,37 +182,6 @@ $('.update-password').submit(function (e) {
         }  
     });
 }); 
-
-
-/* ----------- Import ------------*/
-$('.import').submit(function (e) {
-        loading();
-        e.preventDefault();
-        $.ajax({
-            url:"sw-mod/karyawan/proses.php?action=import",
-            type: "POST",
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-            cache: false,
-            async: false,
-            beforeSend: function () { 
-              loading();
-            },
-            success: function (data) {
-                if (data == 'success') {
-                    swal({title: 'Berhasil!', text: 'Data Karyawan berhasil diimport.!', icon: 'success', timer: 2500,});
-                   window.setTimeout(window.location.href = "./karyawan",2500);
-                } else {
-                    swal({title: 'Oops!', text: data, icon: 'error', timer: 2500,});
-                }
-
-            },
-            complete: function () {
-                $(".loading").hide();
-            },
-        });
-  });
 
 
 });

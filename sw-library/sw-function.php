@@ -1,4 +1,5 @@
-<?php @session_start(); //error_reporting(0);
+<?php @session_start(); error_reporting(0);
+date_default_timezone_set('Asia/Jakarta');
 $date     = DATE('Y-m-d');
 $day      = DATE('d');
 $day_en   = DATE('l');
@@ -7,7 +8,6 @@ $month    = DATE('m');
 $year     = DATE('Y');
 $time     = DATE('H:i:s');
 $timeNow  = DATE('Y-m-d H:i:s');
-setlocale(LC_ALL, 'id_ID');
 
 function ubah_tgl2($tanggal) {
    $pisah   = explode('-',$tanggal);
@@ -22,7 +22,6 @@ $hari     = date("w");
 $hari_ini = $seminggu[$hari];
 return $hari_ini;
 }
-
 
 function hari_in(){
  $today_in = hari().", ".tgl_indo(date('Y-m-d'));
@@ -51,27 +50,6 @@ function jam_indo($timeNow){
   return $tgl_jam;
 }
 
-
-// fungsi untuk menentukan bulan dan mengubahnya
-function bulan_indo2($bulan_angka) {
- $bulan_id = array(1=>'Januari', 
-      'Februari', 
-      'Maret', 
-      'April', 
-      'Mei', 
-      'Juni', 
-      'Juli', 
-      'Agustus', 
-      'September', 
-      'Oktober', 
-      'November', 
-      'Desember'
-     );
- return $bulan_id[$bulan_angka];
-}
-
-
-
 function tanggal_indo($tanggal, $cetak_hari = false)
 {
   $hari = array ( 1 =>    'Senin',
@@ -83,7 +61,7 @@ function tanggal_indo($tanggal, $cetak_hari = false)
         'Minggu'
       );
       
-    $bulan = array (1 =>   'Januari',
+  $bulan = array (1 =>   'Januari',
         'Februari',
         'Maret',
         'April',
@@ -258,7 +236,7 @@ function format_nomer($angka2) {
 
 function time_since($original)
 {
-  date_default_timezone_set('Asia/Makassar');
+  date_default_timezone_set('Asia/Jakarta');
   $chunks = array(
       array(60 * 60 * 24 * 365, 'tahun'),
       array(60 * 60 * 24 * 30, 'bulan'),
@@ -294,47 +272,6 @@ function time_since($original)
   return $print . ' yang lalu';
 }
 
-
-
-function hari_ini(){
-  $hari = date ("D");
-  switch($hari){
-    case 'Sun':
-      $hari_ini = "Minggu";
-    break;
- 
-    case 'Mon':     
-      $hari_ini = "Senin";
-    break;
- 
-    case 'Tue':
-      $hari_ini = "Selasa";
-    break;
- 
-    case 'Wed':
-      $hari_ini = "Rabu";
-    break;
- 
-    case 'Thu':
-      $hari_ini = "Kamis";
-    break;
- 
-    case 'Fri':
-      $hari_ini = "Jumat";
-    break;
- 
-    case 'Sat':
-      $hari_ini = "Sabtu";
-    break;
-    
-    default:
-      $hari_ini = "Tidak di ketahui";   
-    break;
-  }
- 
-  return "".$hari_ini ."";
- 
-}
 
 // Ucapa Selamat Pagi siang sore malam
 $time_info = date('H:i');

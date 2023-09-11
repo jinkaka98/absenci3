@@ -47,12 +47,12 @@ $kode_karyawan = $huruf . sprintf("%03s", $urutan);
                 </div>
 
 
-            //    <div class="form-links mt-2">
-            //         <div>
-            //             <a href="registrasi">Mendaftar</a>
-            //         </div>
-            //         <div><a href="forgot" class="text-muted">Lupa Password?</a></div>
-            //     </div>
+                <div class="form-links mt-2">
+                    <div>
+                        <a href="registrasi">Mendaftar</a>
+                    </div>
+                    <div><a href="forgot" class="text-muted">Lupa Password?</a></div>
+                </div>
 
                 <div class="form-button-group transparent">
                    <button type="submit" class="btn btn-primary btn-block"><ion-icon name="log-in-outline"></ion-icon> Masuk</button>

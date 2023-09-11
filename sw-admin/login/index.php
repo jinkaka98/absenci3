@@ -72,8 +72,7 @@ if(!empty($_SESSION['SESSION_USER']) && !empty($_SESSION['SESSION_ID'])){
 
 
 <footer class="text-muted text-center">
-    <small></span><span id="credits"><a class="credits" href="https://s-widodo.com" target="_blank">CMS S-widodo.com</a> - All Rights Reserveds</span>
-    <em>Version 3.0 Update 2021</em></small>
+    Redeveloped by <a href="https://imamdev.com" rel="dofollow" target="_blank">Imamdev</a><br/><div style="display: none;"><a class="credits" href="https://s-widodo.com" rel="nofollow" target="_blank"></a></div>
 </footer>
 
         <script src="../sw-assets/js/jquery.min.js"></script>

@@ -34,35 +34,9 @@ $code   =  'SW'.acakangkahuruf(3).'/'.$year.'';
       $address= mysqli_real_escape_string($connection, $_POST['address']);
   }
 
-  if (empty($_POST['latitude'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $latitude= mysqli_real_escape_string($connection, $_POST['latitude']);
-  }
-
-  if (empty($_POST['longitude'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $longitude= mysqli_real_escape_string($connection, $_POST['longitude']);
-  }
-
-  if (empty($_POST['radius'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $radius= mysqli_real_escape_string($connection, $_POST['radius']);
-  }
-
   if (empty($error)) { 
-    $latitude_longtitude = ''.$latitude.','.$longitude.'';
-    $add ="INSERT INTO  building (code,
-                        name,
-                        address,
-                        latitude_longtitude,
-                        radius) values('$code',
-                        '$name',
-                        '$address',
-                        '$latitude_longtitude',
-                        '$radius')"; 
+
+    $add ="INSERT INTO  building (code,name,address,building_scanner) values('$code','$name','$address','')"; 
     if($connection->query($add) === false) { 
         die($connection->error.__LINE__); 
         echo'Data tidak berhasil disimpan!';
@@ -97,30 +71,9 @@ case 'update':
       $address= mysqli_real_escape_string($connection, $_POST['address']);
   }
 
-  if (empty($_POST['latitude'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $latitude= mysqli_real_escape_string($connection, $_POST['latitude']);
-  }
-
-  if (empty($_POST['longitude'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $longitude= mysqli_real_escape_string($connection, $_POST['longitude']);
-  }
-
-  if (empty($_POST['radius'])) {
-      $error[] = 'tidak boleh kosong';
-    } else {
-      $radius= mysqli_real_escape_string($connection, $_POST['radius']);
-  }
-
   if (empty($error)) { 
-     $latitude_longtitude = ''.$latitude.','.$longitude.'';
     $update="UPDATE building SET name='$name',
-            address='$address',
-            latitude_longtitude='$latitude_longtitude',
-            radius='$radius' WHERE building_id='$id'"; 
+            address='$address' WHERE building_id='$id'"; 
     if($connection->query($update) === false) { 
         die($connection->error.__LINE__); 
         echo'Data tidak berhasil disimpan!';

@@ -45,7 +45,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
 
                 <div class="form-button-group  transparent">
                    <button type="submit" class="btn btn-primary btn-block"><ion-icon name="log-in-outline"></ion-icon> Masuk</button>
-                   <a style="display:none" href="oauth/google" class="btn btn-danger btn-block"><ion-icon name="logo-google"></ion-icon> Masuk Dengan Google</a>
+                   <a href="oauth/google" class="btn btn-danger btn-block"><ion-icon name="logo-google"></ion-icon> Masuk Dengan Google</a>
                 </div>
 
             </form>
@@ -69,24 +69,16 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                 </div>
                 <!-- * Balance -->
                 <!-- Wallet Footer -->
-               <div class="wallet-footer">
-                   <!-- <div class="item">
+                <div class="wallet-footer">
+                    <div class="item">
                         <a href="./absent">
                             <div class="icon-wrapper bg-danger">
                                 <ion-icon name="camera-outline"></ion-icon>
                             </div>
                             <strong>Absen</strong>
                         </a>
-                    </div> -->
-
-                    <div class="item">
-                        <a href="./izin">
-                            <div class="icon-wrapper bg-warning">
-                               <ion-icon name="documents-outline"></ion-icon>
-                            </div>
-                            <strong>Izin</strong>
-                        </a>
                     </div>
+
 
                     <div class="item">
                         <a href="./cuty">
@@ -97,14 +89,14 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         </a>
                     </div>
                    
-                   <!-- <div class="item">
+                    <div class="item">
                         <a href="./history">
                             <div class="icon-wrapper bg-success">
                                <ion-icon name="document-text-outline"></ion-icon>
                             </div>
                             <strong>History</strong>
                         </a>
-                    </div> -->
+                    </div>
 
                     <div class="item">
                         <a href="./profile">
@@ -114,11 +106,9 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                             <strong>Profil</strong>
                         </a>
                     </div>
+
+
                 </div>
-                    <center>
-                        <sub>Informasi Tekait Absensi dan Penggunaan hanya di : </sub>
-                        <a href="https://absen-kidora.space/" target="_blank">Klik Di Sini</a>
-                    </center>
                 <!-- * Wallet Footer -->
             </div>
         </div>
@@ -141,7 +131,6 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                 echo'
                 <div class="col-6">
                     <a href="./absent"><div class="stat-box bg-success">
-                        <div class="title text-white">Tekan Disini</div>
                         <div class="title text-white">Absen Pulang</div>
                         <div class="value text-white">Belum absen</div>
                     </div></a>
@@ -150,17 +139,15 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                 echo'
                 <div class="col-6">
                     <div class="stat-box bg-success">
-                    <div class="title text-white">Tekan Disini</div>
                         <div class="title text-white">Absen Pulang</div>
                         <div class="value text-white">'.$row_absent['time_out'].'</div>
                     </div>
                 </div>';}
-            }
+            } 
             else{
                 echo'
                 <div class="col-6">
-                        <a href="./absent"><div class="stat-box bg-danger">
-                        <div class="title text-white">Tekan Disini</div>
+                    <a href="./absent"><div class="stat-box bg-danger">
                         <div class="title text-white">Absen Masuk</div>
                         <div class="value text-white">Belum absen</div>
                     </div></a>
@@ -168,7 +155,6 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
 
                 <div class="col-6">
                     <div class="stat-box bg-secondary">
-                        <div class="title text-white">Tekan Disini</div>
                         <div class="title text-white">Absen Pulang</div>
                         <div class="value text-white">Belum Absen</div>
                     </div>
@@ -215,12 +201,10 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Jam Masuk</th>
                                 <th scope="col">Jam Pulang</th>
-                                <th scope="col">Scan Masuk</th>
-                                <th scope="col">Scan Pulang</th>
                             </tr>
                         </thead>
                         <tbody>';
-                        $query_absen="SELECT presence_date,time_in,time_out,date_in,date_out FROM presence WHERE MONTH(presence_date) ='$month' AND employees_id='$row_user[id]' ORDER BY presence_id DESC LIMIT 6";
+                        $query_absen="SELECT presence_date,time_in,time_out FROM presence WHERE MONTH(presence_date) ='$month' AND employees_id='$row_user[id]' ORDER BY presence_id DESC LIMIT 6";
                         $result_absen = $connection->query($query_absen);
                         if($result_absen->num_rows > 0){
                             while ($row_absen= $result_absen->fetch_assoc()) {
@@ -229,8 +213,6 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                                 <th scope="row">'.tgl_ind($row_absen['presence_date']).'</th>
                                 <td>'.$row_absen['time_in'].'</td>
                                 <td>'.$row_absen['time_out'].'</td>
-                                 <td>'.tgl_ind($row_absen['date_in']).'</td>
-                                  <td>'.tgl_ind($row_absen['date_out']).'</td>
                             </tr>';
                         }}
                         echo'

@@ -17,7 +17,6 @@ RewriteRule ^login/?$ login/index.php
 RewriteRule ^login/forgot?.html$ login/forgot.php
 RewriteRule ^logout?$ login/sw-logout.php
 RewriteRule ^absensi/print$ sw-mod/absensi/print.php
-RewriteRule ^laporan-harian/print$ sw-mod/laporan-harian/print.php
 RewriteRule ^cuty/print$ sw-mod/cuty/print.php
 
 

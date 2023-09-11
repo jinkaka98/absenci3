@@ -92,23 +92,11 @@ echo'
             $warna      = '';
             $background = '';
             $status     = 'Tidak Hadir';
-         if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday"){
-            $warna='#ffffff';
+          if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday") {
+            $warna='white';
             $background ='#FF0000';
-            $status_hadir ='Libur Akhir Pekan';
-            $sum++;
-      }
-      else{
-        $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
-        $query_holiday="SELECT holiday_date FROM holiday WHERE holiday_date='$date_month_year'";
-        $result_holiday = $connection->query($query_holiday);
-          if($result_holiday->num_rows > 0){
-            $warna='#ffffff';
-            $background ='#FF0000';
-            $libur++;
-          }
-
-      }
+            $status ='Libur Akhir Pekan';
+        }
       $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
 
       if(isset($_GET['from']) OR isset($_GET['to'])){
@@ -371,23 +359,11 @@ echo'
             $warna      = '';
             $background = '';
             $status     = 'Tidak Hadir';
-        if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday"){
-            $warna='#ffffff';
+          if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday") {
+            $warna='white';
             $background ='#FF0000';
-            $status_hadir ='Libur Akhir Pekan';
-            $sum++;
-      }
-      else{
-        $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
-        $query_holiday="SELECT holiday_date FROM holiday WHERE holiday_date='$date_month_year'";
-        $result_holiday = $connection->query($query_holiday);
-          if($result_holiday->num_rows > 0){
-            $warna='#ffffff';
-            $background ='#FF0000';
-            $libur++;
-          }
-
-      }
+            $status ='Libur Akhir Pekan';
+        }
       $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
 
       if(isset($_GET['from']) OR isset($_GET['to'])){
@@ -635,23 +611,11 @@ echo'
             $warna      = '';
             $background = '';
             $status     = 'Tidak Hadir';
-          if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday"){
-            $warna='#ffffff';
+          if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday") {
+            $warna='white';
             $background ='#FF0000';
-            $status_hadir ='Libur Akhir Pekan';
-            $sum++;
-      }
-      else{
-        $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
-        $query_holiday="SELECT holiday_date FROM holiday WHERE holiday_date='$date_month_year'";
-        $result_holiday = $connection->query($query_holiday);
-          if($result_holiday->num_rows > 0){
-            $warna='#ffffff';
-            $background ='#FF0000';
-            $libur++;
-          }
-
-      }
+            $status ='Libur Akhir Pekan';
+        }
       $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
 
       if(isset($_GET['from']) OR isset($_GET['to'])){
@@ -865,23 +829,11 @@ echo'
             $warna      = '';
             $background = '';
             $status     = 'Tidak Hadir';
-          if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday"){
-            $warna='#ffffff';
+          if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday") {
+            $warna='white';
             $background ='#FF0000';
-            $status_hadir ='Libur Akhir Pekan';
-            $sum++;
-      }
-      else{
-        $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
-        $query_holiday="SELECT holiday_date FROM holiday WHERE holiday_date='$date_month_year'";
-        $result_holiday = $connection->query($query_holiday);
-          if($result_holiday->num_rows > 0){
-            $warna='#ffffff';
-            $background ='#FF0000';
-            $libur++;
-          }
-
-      }
+            $status ='Libur Akhir Pekan';
+        }
       $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
 
       if(isset($_GET['from']) OR isset($_GET['to'])){
@@ -892,6 +844,15 @@ echo'
       else{
         $filter ="employees_id='$id' AND  presence_date='$date_month_year' AND MONTH(presence_date) ='$month'";
       }
+
+
+      $query_shift ="SELECT time_in,time_out FROM shift WHERE shift_id='$row[shift_id]'";
+      $result_shift = $connection->query($query_shift);
+      $row_shift = $result_shift->fetch_assoc();
+      $shift_time_in = $row_shift['time_in'];
+      $shift_time_out = $row_shift['time_out'];
+      $newtimestamp = strtotime(''.$shift_time_in.' + 05 minute');
+      $newtimestamp = date('H:i:s', $newtimestamp);
 
       $query_absen ="SELECT presence_id,presence_date,time_in,time_out,picture_in,picture_out,present_id,latitude_longtitude_in,information,TIMEDIFF(TIME(time_in),'$shift_time_in') AS selisih,if (time_in>'$shift_time_in','Telat',if(time_in='00:00:00','Tidak Masuk','Tepat Waktu')) AS status,TIMEDIFF(TIME(time_out),'$shift_time_out') AS selisih_out FROM presence WHERE $filter ORDER BY presence_id DESC";
       $result_absen = $connection->query($query_absen);
@@ -965,15 +926,15 @@ echo'
               }
               else{
                 echo'
-                 <td class="text-center">'.$row['time_in'].'</td>
                 <td class="text-center">'.$row_absen['time_in'].'</td>
-                <td class="text-center">'.$row_absen['selisih'].'</td>';
+                <td class="text-center">'.$row_absen['time_in'].'</td>
+                <td class="text-center">Terlambat</td>';
               }
 
             }
             else{
             echo'
-              <td class="text-center">'.$row['time_in'].'</td>
+              <td class="text-center">'.$shift_time_in.'</td>
               <td class="text-center">'.$row_absen['time_in'].'</td>
               <td class="text-center">'.$row_absen['selisih'].'</td>';
             }
@@ -985,7 +946,7 @@ echo'
               }
               else{
                 echo'
-                <td class="text-center">'.$row['time_out'].'</td>
+                <td class="text-center">'.$row_shift['time_out'].'</td>
                 <td class="text-center">'.$row_absen['time_out'].'</td>
                 <td class="text-center">'.$row_absen['selisih_out'].'</td>';
               }
@@ -993,7 +954,7 @@ echo'
             }
             else{
             echo'
-             <td class="text-center">'.$row['time_out'].'</td>
+              <td class="text-center">'.$row_shift['time_out'].'</td>
               <td class="text-center">'.$row_absen['time_out'].'</td>
               <td class="text-center">'.$row_absen['selisih_out'].'</td>';
             }

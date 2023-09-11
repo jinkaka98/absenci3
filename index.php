@@ -3,6 +3,8 @@
   session_start();
   include_once 'sw-library/sw-config.php';
   include_once 'sw-library/sw-function.php';
+  include_once 'sw-library/mobile-detect/Mobile_Detect.php';
+  $detect = new Mobile_Detect();
   //ob_start("minify_html");
   $dbhostsql      = DB_HOST;
   $dbusersql      = DB_USER;
@@ -19,16 +21,16 @@
     if(!empty($_COOKIE['COOKIES_COOKIES'])){$COOKIES_COOKIES   =  $_COOKIE['COOKIES_COOKIES'];}
     if(!empty($_COOKIE['COOKIES_MEMBER'])){$COOKIES_MEMBER     =  epm_decode($_COOKIE['COOKIES_MEMBER']);}
     require_once'sw-mod/out/sw-cookies.php';
-    $query_absent   ="SELECT employees_id,time_in,time_out FROM presence WHERE employees_id='$row_user[id]' AND status=1 ";
+    $query_absent   ="SELECT employees_id,time_in,time_out FROM presence WHERE employees_id='$row_user[id]' AND presence_date='$date'";
     $result_absent  = $connection->query($query_absent);
-    
-    // cek apakah sudah absen
-    $query_absents   ="SELECT employees_id,time_in,time_out FROM presence WHERE employees_id='$row_user[id]' AND status=0 AND presence_date='$date' ";
-    $result_absents  = $connection->query($query_absents);
-    
    // $row_absent     = $result_absent->fetch_assoc();
   }
 
+if ($detect->isMobile()){
+    $mobile ='true';
+  }else{
+    $mobile ='false';
+  }
 
   $website_url        = $row_site['site_url'];
   $website_name       = $row_site['site_name'];

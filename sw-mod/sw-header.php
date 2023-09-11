@@ -10,9 +10,9 @@ echo'
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
   <title>'.$website_name.'</title>
-  <meta name="theme-color" content="#007bff">
-  <meta name="msapplication-navbutton-color" content="#007bff">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#007bff">
+  <meta name="theme-color" content="#FF396F">
+  <meta name="msapplication-navbutton-color" content="#FF396F">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#FF396F">
 
     <!-- Favicons -->
   <link rel="shortcut icon" href="'.$website_url.'/sw-content/favicon.png">
@@ -31,7 +31,7 @@ echo'
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/css/style.css">
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/css/sw-custom.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">';
-  if($mod =='history' OR $mod=='izin'){
+  if($mod =='history'){
     echo'
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="'.$base_url.'/sw-mod/sw-assets/js/plugins/datatables/dataTables.bootstrap.css">
@@ -107,7 +107,7 @@ echo'<!-- App Sidebar -->
                     <!-- * profile box -->
               
                     <!-- menu -->
-                    <!-- <div class="listview-title mt-1">Absen</div>
+                    <div class="listview-title mt-1">Absen</div>
                     <ul class="listview flush transparent no-line image-listview">
                         <li>
                             <a href="./" class="item">
@@ -117,23 +117,13 @@ echo'<!-- App Sidebar -->
                             </a>
                         </li>
                         <li>
-                            <a href="./absent" class="item">
+                            <a href="./present" class="item">
                                 <div class="icon-box bg-danger">
                                     <ion-icon name="scan-outline"></ion-icon>
                                 </div>
                                     Absen
                             </a>
                         </li>
-
-                        <li>
-                            <a href="./izin" class="item">
-                                <div class="icon-box bg-danger">
-                                   <ion-icon name="documents-outline"></ion-icon>
-                                </div>
-                                  Izin
-                            </a>
-                        </li>
-
 
                         <li>
                             <a href="./cuty" class="item">
@@ -144,14 +134,14 @@ echo'<!-- App Sidebar -->
                             </a>
                         </li>
 
-                        <!-- <li>
+                        <li>
                             <a href="./history" class="item">
                                 <div class="icon-box bg-danger">
                                     <ion-icon name="document-text-outline"></ion-icon>
                                 </div>
                                    History
                             </a>
-                        </li> -->
+                        </li>
                       
                         <li>
                             <a href="profile" class="item">
@@ -174,7 +164,7 @@ echo'<!-- App Sidebar -->
 
                     </ul>
                     <!-- * menu -->
-                </div> -->
+                </div>
             </div>
         </div>
     </div>

@@ -52,23 +52,11 @@ echo'
             $warna      = '';
             $background = '';
             $status_hadir     = 'Tidak Hadir';
-      if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday"){
+          if (date("l",mktime (0,0,0,$bulan,$d,$tahun)) == "Sunday") {
             $warna='#ffffff';
             $background ='#FF0000';
             $status_hadir ='Libur Akhir Pekan';
-            $sum++;
-      }
-      else{
-        $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
-        $query_holiday="SELECT holiday_date FROM holiday WHERE holiday_date='$date_month_year'";
-        $result_holiday = $connection->query($query_holiday);
-          if($result_holiday->num_rows > 0){
-            $warna='#ffffff';
-            $background ='#FF0000';
-            $libur++;
-          }
-
-      }
+        }
       $date_month_year = ''.$year.'-'.$bulan.'-'.$d.'';
 
       if(isset($_POST['month']) OR isset($_POST['year'])){

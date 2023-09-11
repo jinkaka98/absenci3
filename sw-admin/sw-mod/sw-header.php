@@ -20,10 +20,10 @@ echo'
   <meta name="googlebot" content="noindex">
   <meta name="mobile-web-app-capable" content="yes">
   
-  <link rel="shortcut icon" href="'.$base_url_admin.'sw-content/favicon.png">
-  <link rel="apple-touch-icon" href="'.$base_url_admin.'sw-content/favicon.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="'.$base_url_admin.'sw-content/favicon.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="'.$base_url_admin.'sw-content/favicon.png">
+  <link rel="shortcut icon" href="'.$site_url.'/sw-content/favicon.png">
+  <link rel="apple-touch-icon" href="'.$site_url.'/sw-content/favicon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="'.$site_url.'/sw-content/favicon.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="'.$site_url.'/sw-content/favicon.png">
   <link rel="stylesheet" href="./sw-assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="./sw-assets/css/AdminLTE.min.css">
   <link rel="stylesheet" href="./sw-assets/css/skin-blue-light.css">
@@ -32,16 +32,23 @@ echo'
   <link rel="stylesheet" href="./sw-assets/plugins/datepicker/datepicker3.css">
   <link rel="stylesheet" href="./sw-assets/plugins/timepicker/bootstrap-timepicker.min.css">
   <link rel="stylesheet" type="text/css" href="./sw-assets/css/simple-lightbox.min.css">
-  <link rel="stylesheet" href="./sw-assets/plugins/datatables/dataTables.bootstrap.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <link rel="stylesheet" href="./sw-assets/plugins/datepicker/datepicker3.css">
-  <link rel="stylesheet" href="../sw-mod/sw-assets/js/plugins/magnific-popup/magnific-popup.css">';
-if($mod=='lokasi'){
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">';
+  if($mod =='pendaftar'){
   echo'
-  <link rel="stylesheet" href="./sw-assets/plugins/leatfet/leaflet.css">
-  <link rel="stylesheet" href="./sw-assets/plugins/leatfet/L.Control.Locate.min.css">';
+  <link rel="stylesheet" href="./sw-assets/plugins/select2/dist/css/select2.min.css">';}
+  if($mod =='setting-pendaftaran'){
+    echo'
+  <link rel="stylesheet" href="./sw-assets/plugins/datepicker/datepicker3.css">';
 }
+  if($mod=='absensi'){
   echo'
+    <link rel="stylesheet" href="../sw-mod/sw-assets/js/plugins/magnific-popup/magnific-popup.css">';
+  }
+  echo'
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
   <!-- </head> -->
 </head>
 <body class="sidebar-mini skin-blue-light fixed">';

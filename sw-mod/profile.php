@@ -14,9 +14,9 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
         header("location:./");
 }else{
   echo'<!-- App Capsule -->
-     <div id="appCapsule">
+    <div id="appCapsule">
         <div class="section mt-3 text-center">
-           <!-- <div class="avatar-section">
+            <div class="avatar-section">
                 <input type="file" class="upload" name="file" id="avatar" accept=".jpg, .jpeg, ,gif, .png" capture="camera">
                 <a href="#">';
                 if($row_user['photo'] ==''){
@@ -29,8 +29,8 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <ion-icon name="camera-outline"></ion-icon>
                     </span>
                 </a>
-            </div> -->
-        </div> 
+            </div>
+        </div>
 
         <div class="section mt-2 mb-2">
             <div class="section-title">Profil</div>
@@ -40,7 +40,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="text4">NIK</label>
-                                <input type="text" class="form-control" value="'.$row_user['employees_code'].'" disabled>
+                                <input type="text" class="form-control" value="'.$row_user['employees_code'].'" required>
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
                                 </i>
@@ -50,7 +50,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="email4">Nama</label>
-                                <input type="text" class="form-control" id="name" name="employees_name" value="'.$row_user['employees_name'].'" disabled>
+                                <input type="text" class="form-control" id="name" name="employees_name" value="'.$row_user['employees_name'].'" required>
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
                                 </i>
@@ -65,9 +65,9 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                                       $result = $connection->query($query);
                                       while($rowa = $result->fetch_assoc()) { 
                                       if($rowa['position_id'] == $row_user['position_id']){
-                                         echo'<option value="'.$rowa['position_id'].'" selected>'.$rowa['position_name'].'</option>';
+                                        echo'<option value="'.$rowa['position_id'].'" selected>'.$rowa['position_name'].'</option>';
                                       }else{
-                                        // echo'<option value="'.$rowa['position_id'].'">'.$rowa['position_name'].'</option>';
+                                        echo'<option value="'.$rowa['position_id'].'">'.$rowa['position_name'].'</option>';
                                       }
                                       }echo'
                                 </select>
@@ -84,7 +84,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                                       if($rowa['shift_id'] == $row_user['shift_id']){ 
                                         echo'<option value="'.$rowa['shift_id'].'" selected>'.$rowa['shift_name'].'</option>';
                                       }else{
-                                        // echo'<option value="'.$rowa['shift_id'].'">'.$rowa['shift_name'].'</option>';
+                                        echo'<option value="'.$rowa['shift_id'].'">'.$rowa['shift_name'].'</option>';
                                       }
                                       }echo'
                                 </select>
@@ -102,7 +102,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                                     if($row['building_id'] == $row_user['building_id']){ 
                                         echo'<option value="'.$row['building_id'].'" selected>'.$row['name'].'</option>';
                                     }else{
-                                        // echo'<option value="'.$row['building_id'].'">'.$row['name'].'</option>';
+                                        echo'<option value="'.$row['building_id'].'">'.$row['name'].'</option>';
                                     }
                                 }echo'
                                 </select>
@@ -110,7 +110,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         </div>
 
                         <hr>
-                             <button type="submit" class="btn btn-danger mr-1 btn-lg btn-block btn-profile">Simpan</button> 
+                            <button type="submit" class="btn btn-danger mr-1 btn-lg btn-block btn-profile">Simpan</button>
                         
                     </form>
 
@@ -126,8 +126,8 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                     <form id="update-password">
                         <div class="form-group boxed">
                             <div class="input-wrapper">
-                                <label class="label" for="text4">Email Pegawai</label>
-                                <input type="email" class="form-control" name="employees_email" value="'.$row_user['employees_email'].'" disabled> 
+                                <label class="label" for="text4">Kode Pegawai</label>
+                                <input type="email" class="form-control" name="employees_email" value="'.$row_user['employees_email'].'" style="background:#eeeeee" readonly>
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
                                 </i>
