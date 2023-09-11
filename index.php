@@ -1,5 +1,5 @@
 <?php //error_reporting(0);
-echo "Waktu Demo Telah Berakhir";
+// echo "Waktu Demo Telah Berakhir";
  die;
   ob_start();
   session_start();
