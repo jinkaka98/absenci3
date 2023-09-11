@@ -17,7 +17,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
     <div id="appCapsule">
         <div class="section mt-3 text-center">
             <div class="avatar-section">
-                <input type="file" class="upload" name="file" id="avatar" accept=".jpg, .jpeg, ,gif, .png" capture="camera" readonly>
+                <!-- <input type="file" class="upload" name="file" id="avatar" accept=".jpg, .jpeg, ,gif, .png" capture="camera"> -->
                 <a href="#">';
                 if($row_user['photo'] ==''){
                 echo'<img src="'.$base_url.'sw-content/avatar.jpg" alt="image" class="imaged w100 rounded">';
