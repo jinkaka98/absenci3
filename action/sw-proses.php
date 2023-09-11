@@ -866,10 +866,10 @@ if(isset($_POST['from']) OR isset($_POST['to'])){
                     <ion-icon name="chatbubble-outline"></ion-icon> '.strip_tags($row_permission['permission_description']).'</p>
               </div>
           </div>
-          <div class="right">
+          <!-- <div class="right">
              <button type="button" class="btn btn-danger btn-sm delete-izin" data-id="'.epm_encode($row_permission['permission_id']).'"><ion-icon name="trash-outline"></ion-icon></button>';
             echo'
-          </div>
+          </div> -->
       </div>';?>
       <script type="text/javascript">
         $('.image-link').magnificPopup({type:'image'});
