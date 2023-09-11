@@ -1170,7 +1170,7 @@ case 'load-home-counter':
   </div>
   <!-- * item -->
   <!-- item -->
-  <div class="col-6 col-md-3">
+ <!-- <div class="col-6 col-md-3">
       <a href="javascript:void(0)" class="item">
           <div class="detail">
               <div class="icon-block text-danger">
@@ -1182,7 +1182,7 @@ case 'load-home-counter':
               </div>
           </div>
       </a>
-  </div>
+  </div> -->
   <!-- * item -->';
     
 
