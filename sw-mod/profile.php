@@ -40,7 +40,7 @@ if(!isset($_COOKIE['COOKIES_MEMBER'])){
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <label class="label" for="text4">NIK</label>
-                                <input type="text" class="form-control" value="'.$row_user['employees_code'].'" required>
+                                <input type="text" class="form-control" value="'.$row_user['employees_code'].'" required > <!-- readonly -->
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
                                 </i>
